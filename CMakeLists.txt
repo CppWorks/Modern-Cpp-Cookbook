@@ -8,7 +8,7 @@ project(Modern-Cpp-Cookbook VERSION 0.0.1)
 # find_package(Threads)
 
 add_executable(Chapter01 ${CMAKE_SOURCE_DIR}/Chapter01/main.cpp )
-target_compile_features(Chapter01 PUBLIC cxx_std_17)
+target_compile_features(Chapter01 PUBLIC cxx_std_14)
 
 # Create compile database
 add_custom_target(compile_commands ALL)

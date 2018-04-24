@@ -70,7 +70,8 @@ void execute() {
   }
 
   {
-    auto l1 = long long{42};  // error
+    // error
+    // auto l1 = long long{42};
 
     using llong = long long;
     auto l2 = llong{42};  // OK
