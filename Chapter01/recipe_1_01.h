@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -66,7 +67,21 @@ void execute() {
     foo f(42);
     auto x = f.get();
     x = 100;
+    assert(f.get() == 42);
     std::cout << f.get() << std::endl;  // prints 42
+  }
+
+  {
+    foo f(42);
+    auto& x = f.get();
+    x = 100;
+    assert(f.get() == 100);
+    std::cout << f.get() << std::endl;  // prints 100
+  }
+
+  {
+      // It is not possible to use auto for types that are not moveable.
+      // auto ai = std::atomic<int>(42);  // error
   }
 
   {
@@ -96,7 +111,10 @@ void execute() {
   }
 }
 
+// C++11
 auto func1(int const i) -> int { return 2 * i; }
 
+// C++14
 auto func2(int const i) { return 2 * i; }
+
 }  // namespace recipe_1_01
