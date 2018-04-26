@@ -151,8 +151,8 @@ void execute() {
     foo f1;  // default initialization
     foo f2(42, 1);
     foo f3(42);
-    // But! Function declaration:
-    foo f4();
+    // But! This is a function declaration!
+    // foo f4();
   }
 
   {
@@ -173,7 +173,7 @@ void execute() {
     // Brace-initialization does not allow narrowing conversion. A narrowing conversion is
     // an implicit conversion.
     // int i{1.2};  // Error!
-    int i(1.2);  // Warning that implicit conversion will take place.
+    // int i(1.2);  // Warning that implicit conversion will take place.
 
     double d = 47 / 13;
     // float f1{ d };		// Error!
@@ -192,10 +192,10 @@ void execute() {
     // Direct-list-initialization and copy-list-initialization.
     auto a = {42}; // a -> initializer_list<int>
     auto b{42}; // b -> int
-    auto c = {4, 2}; // c -> initializer_list<int>
+    auto c = {4, 2};  // c -> initializer_list<int>
 
     // TD<decltype(c)> cType;
-    
+
     // Error! Direct-list-initialization of ‘auto’ requires exactly one element.
     // auto d{4, 2};
   }
