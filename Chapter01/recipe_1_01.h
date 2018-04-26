@@ -1,11 +1,15 @@
 #pragma once
 
+#include <atomic>
 #include <cassert>
 #include <iostream>
 #include <map>
 #include <memory>
 #include <string>
 #include <vector>
+
+template <class T>
+class TD;
 
 namespace recipe_1_01 {
 using namespace std::string_literals;
@@ -34,15 +38,19 @@ void execute() {
     auto i = 42;                                       // int
     auto d = 42.5;                                     // double
     auto s = "text";                                   // const char*
+    auto s1 = "text"s;                                 // const char*
     auto b = new char[10]{0};                          // char*
     auto p = std::make_shared<int>(42);                // std::shared_ptr<int>
     auto v = {1, 2, 3};                                // std::initializer_list<int>
     auto l = [](char const c) { return toupper(c); };  // int(char)
+    // TD<decltype(s)> sType;
+    // TD<decltype(s1)> s1Type;
   }
 
   {
     auto s = std::string{"text"};        // std::string
     auto v = std::vector<int>{1, 2, 3};  // std::vector<int>
+    // TD<decltype(s)> sType;
   }
 
   {
@@ -80,8 +88,8 @@ void execute() {
   }
 
   {
-      // It is not possible to use auto for types that are not moveable.
-      // auto ai = std::atomic<int>(42);  // error
+    // It is not possible to use auto for types that are not moveable.
+    // auto ai = std::atomic<int>(42);
   }
 
   {
