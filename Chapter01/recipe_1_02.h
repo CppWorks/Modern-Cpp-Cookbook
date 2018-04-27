@@ -53,6 +53,8 @@ using vec_t_ca = std::vector<T, custom_allocator<T>>;
 void func(byte b, double d) { std::cout << b << " " << d << std::endl; }
 
 void execute() {
+  std::cout << "\nRecipe 1.02: Creating type aliases and alias templates.\n"
+            << "-------------------------------------------------------\n";
   {
     // In C++11, a type alias is a name for another already declared type, and an alias
     // template is a name for another already declared template. Both of these types of

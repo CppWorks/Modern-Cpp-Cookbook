@@ -1,8 +1,8 @@
 #include "recipe_1_01.h"
 #include "recipe_1_02.h"
 #include "recipe_1_03.h"
-// #include "recipe_1_04.h"
-// #include "recipe_1_05.h"
+#include "recipe_1_04.h"
+#include "recipe_1_05.h"
 // #include "recipe_1_06.h"
 // #include "recipe_1_07.h"
 // #include "recipe_1_08.h"
@@ -17,8 +17,8 @@ int main() {
   recipe_1_01::execute();
   recipe_1_02::execute();
   recipe_1_03::execute();
-  // recipe_1_04::execute();
-  // recipe_1_05::execute();
+  recipe_1_04::execute();
+  recipe_1_05::execute();
   // recipe_1_06::execute();
   // recipe_1_07::execute();
   // recipe_1_08::execute();

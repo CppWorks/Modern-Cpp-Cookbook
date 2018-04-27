@@ -28,6 +28,8 @@ auto proxy_get(foo& f) { return f.get(); }
 decltype(auto) proxy_get2(foo& f) { return f.get(); }
 
 void execute() {
+  std::cout << "Recipe 1.01: Using auto whenever possible.\n"
+            << "------------------------------------------\n";
   {
     // Using auto ensures that you always use the correct type and that implicit
     // conversion will not occur.

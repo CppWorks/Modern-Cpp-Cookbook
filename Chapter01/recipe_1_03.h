@@ -42,6 +42,8 @@ void func(std::initializer_list<int> const l) {
 }
 
 void execute() {
+  std::cout << "\nRecipe 1.03: Understanding uniform initialization.\n"
+            <<   "--------------------------------------------------\n";
   {
     int a = 42;
     double b = 1.2;
