@@ -26,7 +26,8 @@ namespace recipe_5_02 {
     }
   }
 
-  template <size_t N> std::vector<unsigned long> bitset_to_vectorulong(std::bitset<N> bs)
+  template <size_t N>
+  std::vector<unsigned long> bitset_to_vectorulong(std::bitset<N> bs)
   {
     auto result = std::vector<unsigned long>{};
     auto const size = 8 * sizeof(unsigned long);

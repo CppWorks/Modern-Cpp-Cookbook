@@ -31,7 +31,8 @@ namespace recipe_2_06 {
       piece,
     };
 
-    template <unit U> class quantity {
+    template <unit U>
+    class quantity {
       const double amount;
 
     public:

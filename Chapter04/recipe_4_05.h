@@ -3,7 +3,8 @@
 namespace recipe_4_05 {
 #ifdef CONSTEXPR_IF_AVAILABLE
 
-  template <typename T> auto compute(T const a, T const b)
+  template <typename T>
+  auto compute(T const a, T const b)
   {
     if constexpr (std::is_integral<T>::value)
       return a * b;
@@ -18,7 +19,8 @@ namespace recipe_4_05 {
 
     namespace binary_literals {
       namespace binary_literals_internals {
-        template <typename CharT, char d, char... bits> constexpr CharT binary_eval()
+        template <typename CharT, char d, char... bits>
+        constexpr CharT binary_eval()
         {
           if constexpr (sizeof...(bits) == 0)
             return static_cast<CharT>(d - '0');
@@ -30,7 +32,8 @@ namespace recipe_4_05 {
         }
       } // namespace binary_literals_internals
 
-      template <char... bits> constexpr byte8 operator""_b8()
+      template <char... bits>
+      constexpr byte8 operator""_b8()
       {
         static_assert(sizeof...(bits) <= 8,
                       "binary literal b8 must be up to 8 digits long");
@@ -38,7 +41,8 @@ namespace recipe_4_05 {
         return binary_literals_internals::binary_eval<byte8, bits...>();
       }
 
-      template <char... bits> constexpr byte16 operator""_b16()
+      template <char... bits>
+      constexpr byte16 operator""_b16()
       {
         static_assert(sizeof...(bits) <= 16,
                       "binary literal b16 must be up to 16 digits long");
@@ -46,7 +50,8 @@ namespace recipe_4_05 {
         return binary_literals_internals::binary_eval<byte16, bits...>();
       }
 
-      template <char... bits> constexpr byte32 operator""_b32()
+      template <char... bits>
+      constexpr byte32 operator""_b32()
       {
         static_assert(sizeof...(bits) <= 32,
                       "binary literal b32 must be up to 32 digits long");

@@ -6,7 +6,8 @@
 #include <vector>
 
 // For checking types.
-template <class T> class TD;
+template <class T>
+class TD;
 
 // Uniform initialization is arguably one of the most important features from C++11 that
 // developers should understand and use.

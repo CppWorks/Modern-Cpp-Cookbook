@@ -7,7 +7,8 @@ namespace recipe_4_03 {
     double value;
   };
 
-  template <typename T> class pod_wrapper {
+  template <typename T>
+  class pod_wrapper {
     static_assert(std::is_pod<T>::value, "POD type expected!");
 
     T value;
@@ -18,7 +19,8 @@ namespace recipe_4_03 {
     int y;
   };
 
-  template <typename T> auto mul(T const a, T const b)
+  template <typename T>
+  auto mul(T const a, T const b)
   {
     static_assert(std::is_integral<T>::value, "Integral type expected");
 

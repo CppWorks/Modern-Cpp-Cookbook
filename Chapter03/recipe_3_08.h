@@ -5,27 +5,32 @@ namespace recipe_3_08 {
 // only works with Clang 3.9
 
 #ifdef __clang__
-  template <typename... Ts> auto add(Ts... args)
+  template <typename... Ts>
+  auto add(Ts... args)
   {
     return (... + args);
   }
 
-  template <typename... Ts> auto addr(Ts... args)
+  template <typename... Ts>
+  auto addr(Ts... args)
   {
     return (args + ...);
   }
 
-  template <typename... Ts> auto all_of(Ts... args)
+  template <typename... Ts>
+  auto all_of(Ts... args)
   {
     return (... && args);
   }
 
-  template <typename... Ts> auto any_of(Ts... args)
+  template <typename... Ts>
+  auto any_of(Ts... args)
   {
     return (... || args);
   }
 
-  template <typename T> struct wrapper_min {
+  template <typename T>
+  struct wrapper_min {
     T const& value;
   };
 
@@ -35,7 +40,8 @@ namespace recipe_3_08 {
     return wrapper_min<T>{ lhs.value < rhs.value ? lhs.value : rhs.value };
   }
 
-  template <typename... Ts> constexpr auto min(Ts&&... args)
+  template <typename... Ts>
+  constexpr auto min(Ts&&... args)
   {
     return (wrapper_min<Ts>{ args } < ...).value;
   }

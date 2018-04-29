@@ -15,35 +15,41 @@ namespace recipe_2_08 {
     // --------
 
     namespace mutable_version {
-      template <typename CharT> inline void to_upper(tstring<CharT>& text)
+      template <typename CharT>
+      inline void to_upper(tstring<CharT>& text)
       {
         std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
       }
 
-      template <typename CharT> inline void to_lower(tstring<CharT>& text)
+      template <typename CharT>
+      inline void to_lower(tstring<CharT>& text)
       {
         std::transform(std::begin(text), std::end(text), std::begin(text), tolower);
       }
 
-      template <typename CharT> inline void reverse(tstring<CharT>& text)
+      template <typename CharT>
+      inline void reverse(tstring<CharT>& text)
       {
         std::reverse(std::begin(text), std::end(text));
       }
 
-      template <typename CharT> inline void trim(tstring<CharT>& text)
+      template <typename CharT>
+      inline void trim(tstring<CharT>& text)
       {
         auto first{ text.find_first_not_of(' ') };
         auto last{ text.find_last_not_of(' ') };
         text = text.substr(first, (last - first + 1));
       }
 
-      template <typename CharT> inline void trimleft(tstring<CharT>& text)
+      template <typename CharT>
+      inline void trimleft(tstring<CharT>& text)
       {
         auto first{ text.find_first_not_of(' ') };
         text = text.substr(first, text.size() - first);
       }
 
-      template <typename CharT> inline void trimright(tstring<CharT>& text)
+      template <typename CharT>
+      inline void trimright(tstring<CharT>& text)
       {
         auto last{ text.find_last_not_of(' ') };
         text = text.substr(0, last + 1);
@@ -52,38 +58,44 @@ namespace recipe_2_08 {
 
     // ----------
 
-    template <typename CharT> inline tstring<CharT> to_upper(tstring<CharT> text)
+    template <typename CharT>
+    inline tstring<CharT> to_upper(tstring<CharT> text)
     {
       std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
       return text;
     }
 
-    template <typename CharT> inline tstring<CharT> to_lower(tstring<CharT> text)
+    template <typename CharT>
+    inline tstring<CharT> to_lower(tstring<CharT> text)
     {
       std::transform(std::begin(text), std::end(text), std::begin(text), tolower);
       return text;
     }
 
-    template <typename CharT> inline tstring<CharT> reverse(tstring<CharT> text)
+    template <typename CharT>
+    inline tstring<CharT> reverse(tstring<CharT> text)
     {
       std::reverse(std::begin(text), std::end(text));
       return text;
     }
 
-    template <typename CharT> inline tstring<CharT> trim(tstring<CharT> const& text)
+    template <typename CharT>
+    inline tstring<CharT> trim(tstring<CharT> const& text)
     {
       auto first{ text.find_first_not_of(' ') };
       auto last{ text.find_last_not_of(' ') };
       return text.substr(first, (last - first + 1));
     }
 
-    template <typename CharT> inline tstring<CharT> trimleft(tstring<CharT> const& text)
+    template <typename CharT>
+    inline tstring<CharT> trimleft(tstring<CharT> const& text)
     {
       auto first{ text.find_first_not_of(' ') };
       return text.substr(first, text.size() - first);
     }
 
-    template <typename CharT> inline tstring<CharT> trimright(tstring<CharT> const& text)
+    template <typename CharT>
+    inline tstring<CharT> trimright(tstring<CharT> const& text)
     {
       auto last{ text.find_last_not_of(' ') };
       return text.substr(0, last + 1);

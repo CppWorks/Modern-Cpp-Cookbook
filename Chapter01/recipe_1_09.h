@@ -3,7 +3,8 @@
 #include <iostream>
 
 namespace recipe_1_09 {
-  template <typename T, size_t const Size> class dummy_array {
+  template <typename T, size_t const Size>
+  class dummy_array {
     T data[Size] = {};
 
   public:
@@ -28,7 +29,8 @@ namespace recipe_1_09 {
     }
   };
 
-  template <typename T, typename C, size_t const Size> class dummy_array_iterator_type {
+  template <typename T, typename C, size_t const Size>
+  class dummy_array_iterator_type {
   public:
     dummy_array_iterator_type(C& collection, size_t const index)
       : index(index)

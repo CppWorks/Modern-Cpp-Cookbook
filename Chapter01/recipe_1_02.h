@@ -5,7 +5,8 @@
 #include <vector>
 
 // For checking types.
-template <class T> class TD;
+template <class T>
+class TD;
 
 namespace recipe_1_02 {
 
@@ -15,7 +16,8 @@ namespace recipe_1_02 {
   typedef int array_t[10];
   // typedef void(*fn)(byte, double);
 
-  template <typename T> class foo {
+  template <typename T>
+  class foo {
     typedef T value_type;
   };
 
@@ -37,13 +39,16 @@ namespace recipe_1_02 {
   // typedef std::vector<T> vec_t;
   // vec_t<int> v;
 
-  template <typename T> using vec_t = std::vector<T>;
+  template <typename T>
+  using vec_t = std::vector<T>;
 
-  template <class T> class custom_allocator { /* ... */
+  template <class T>
+  class custom_allocator { /* ... */
   };
 
   // The driving purpose of the 'using' syntax is to define alias templates.
-  template <typename T> using vec_t_ca = std::vector<T, custom_allocator<T>>;
+  template <typename T>
+  using vec_t_ca = std::vector<T, custom_allocator<T>>;
 
   void func(byte b, double d)
   {

@@ -13,12 +13,14 @@ namespace recipe_9_02 {
     return T{};
   }
 
-  template <typename T> T generic_func_2() noexcept(noexcept(T{}))
+  template <typename T>
+  T generic_func_2() noexcept(noexcept(T{}))
   {
     return T{};
   }
 
-  template <typename F, typename A> auto func(F&& f, A&& arg) noexcept
+  template <typename F, typename A>
+  auto func(F&& f, A&& arg) noexcept
   {
     static_assert(!noexcept(f(arg)), "F is throwing!");
     return f(arg);

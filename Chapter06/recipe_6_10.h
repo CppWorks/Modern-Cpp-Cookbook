@@ -20,31 +20,38 @@ namespace recipe_6_10 {
     }
   };
 
-  template <typename T> struct is_serializable_with_encoding {
+  template <typename T>
+  struct is_serializable_with_encoding {
     static const bool value = false;
   };
 
-  template <> struct is_serializable_with_encoding<bar> {
+  template <>
+  struct is_serializable_with_encoding<bar> {
     static const bool value = true;
   };
 
   namespace details {
-    template <bool b> struct serializer {
-      template <typename T> static auto serialize(T& v)
+    template <bool b>
+    struct serializer {
+      template <typename T>
+      static auto serialize(T& v)
       {
         return v.serialize();
       }
     };
 
-    template <> struct serializer<true> {
-      template <typename T> static auto serialize(T& v)
+    template <>
+    struct serializer<true> {
+      template <typename T>
+      static auto serialize(T& v)
       {
         return v.serialize_with_encoding();
       }
     };
   } // namespace details
 
-  template <typename T> auto serialize(T& v)
+  template <typename T>
+  auto serialize(T& v)
   {
     return details::serializer<is_serializable_with_encoding<T>::value>::serialize(v);
   }

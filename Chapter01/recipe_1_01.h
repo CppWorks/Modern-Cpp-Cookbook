@@ -9,7 +9,8 @@
 #include <vector>
 
 // For checking types.
-template <class T> class TD;
+template <class T>
+class TD;
 
 namespace recipe_1_01 {
   // For "..."s

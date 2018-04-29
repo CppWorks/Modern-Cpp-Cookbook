@@ -38,7 +38,8 @@ namespace recipe_6_03 {
 } // namespace recipe_6_03
 
 namespace std {
-  template <> struct hash<recipe_6_03::Item> {
+  template <>
+  struct hash<recipe_6_03::Item> {
     typedef recipe_6_03::Item argument_type;
     typedef size_t result_type;
 

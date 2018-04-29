@@ -9,7 +9,8 @@
 namespace recipe_5_10 {
   using namespace std::string_literals;
 
-  template <typename F, typename C> void process(F&& f, C const& c)
+  template <typename F, typename C>
+  void process(F&& f, C const& c)
   {
     std::for_each(std::begin(c), std::end(c), std::forward<F>(f));
   }

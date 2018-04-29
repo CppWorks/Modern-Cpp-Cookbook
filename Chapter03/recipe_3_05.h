@@ -13,7 +13,8 @@
 namespace recipe_3_05 {
   using namespace std::string_literals;
 
-  template <class T = double> struct fround {
+  template <class T = double>
+  struct fround {
     typename std::enable_if<std::is_floating_point<T>::value, T>::type
     operator()(const T& value) const
     {

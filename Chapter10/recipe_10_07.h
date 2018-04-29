@@ -18,7 +18,8 @@ namespace recipe_10_07 {
     }
   };
 
-  template <class T> class SingletonBase {
+  template <class T>
+  class SingletonBase {
   protected:
     SingletonBase()
     {

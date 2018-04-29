@@ -5,12 +5,14 @@
 #include <string>
 
 namespace recipe_3_06 {
-  template <typename F, typename G> auto operator*(F&& f, G&& g)
+  template <typename F, typename G>
+  auto operator*(F&& f, G&& g)
   {
     return funclib::compose(std::forward<F>(f), std::forward<G>(g));
   }
 
-  template <typename F, typename... R> auto operator*(F&& f, R&&... r)
+  template <typename F, typename... R>
+  auto operator*(F&& f, R&&... r)
   {
     return funclib::operator*(std::forward<F>(f), r...);
   }

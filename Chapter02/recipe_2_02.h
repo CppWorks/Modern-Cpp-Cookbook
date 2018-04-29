@@ -15,7 +15,8 @@ namespace recipe_2_02 {
     return minval;
   }
 
-  template <typename T, typename I> T minimum(I const start, I const end)
+  template <typename T, typename I>
+  T minimum(I const start, I const end)
   {
     T minval = std::numeric_limits<T>::max();
     for (auto i = start; i < end; ++i) {
@@ -25,7 +26,8 @@ namespace recipe_2_02 {
     return minval;
   }
 
-  template <typename T> void print_type_properties()
+  template <typename T>
+  void print_type_properties()
   {
     std::cout << "min=" << std::numeric_limits<T>::min() << std::endl
               << "max=" << std::numeric_limits<T>::max() << std::endl

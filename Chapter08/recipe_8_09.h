@@ -11,7 +11,8 @@ namespace recipe_8_09 {
   template <typename Time = std::chrono::microseconds,
             typename Clock = std::chrono::high_resolution_clock>
   struct perf_timer {
-    template <typename F, typename... Args> static Time duration(F&& f, Args... args)
+    template <typename F, typename... Args>
+    static Time duration(F&& f, Args... args)
     {
       auto start = Clock::now();
 
@@ -28,7 +29,8 @@ namespace recipe_8_09 {
     return std::thread::hardware_concurrency();
   }
 
-  template <typename Iter, typename F> void parallel_map(Iter begin, Iter end, F f)
+  template <typename Iter, typename F>
+  void parallel_map(Iter begin, Iter end, F f)
   {
     auto size = std::distance(begin, end);
 

@@ -5,7 +5,8 @@
 
 namespace recipe_10_06 {
   namespace demo1 {
-    template <class T> class base {
+    template <class T>
+    class base {
     public:
       void func1()
       {
@@ -21,14 +22,16 @@ namespace recipe_10_06 {
       }
     };
 
-    template <class T> void do_something(base<T>& b)
+    template <class T>
+    void do_something(base<T>& b)
     {
       b.func1();
     }
   } // namespace demo1
 
   namespace demo2 {
-    template <class T> class control {
+    template <class T>
+    class control {
     public:
       void draw()
       {
@@ -65,12 +68,14 @@ namespace recipe_10_06 {
       }
     };
 
-    template <class T> void draw_control(control<T>& c)
+    template <class T>
+    void draw_control(control<T>& c)
     {
       c.draw();
     }
 
-    template <class T> class fancybutton : public control<fancybutton<T>> {
+    template <class T>
+    class fancybutton : public control<fancybutton<T>> {
     public:
       void erase_background()
       {
@@ -101,7 +106,8 @@ namespace recipe_10_06 {
       }
     };
 
-    template <class T> class control : public controlbase {
+    template <class T>
+    class control : public controlbase {
       T* derived()
       {
         return static_cast<T*>(this);

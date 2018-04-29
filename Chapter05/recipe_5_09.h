@@ -24,7 +24,8 @@ namespace recipe_5_09 {
     }
   };
 
-  template <typename Type, size_t const SIZE> class dummy_array {
+  template <typename Type, size_t const SIZE>
+  class dummy_array {
     Type data[SIZE] = {};
 
   public:
@@ -47,7 +48,8 @@ namespace recipe_5_09 {
       return SIZE;
     }
 
-    template <typename T, size_t const Size> class dummy_array_iterator {
+    template <typename T, size_t const Size>
+    class dummy_array_iterator {
     public:
       typedef dummy_array_iterator self_type;
       typedef T value_type;

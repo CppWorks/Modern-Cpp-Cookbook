@@ -8,7 +8,8 @@ namespace recipe_3_03 {
   using namespace std::string_literals;
 
   struct __lambda_name__ {
-    template <typename T1, typename T2> auto operator()(T1 const s, T2 const n) const
+    template <typename T1, typename T2>
+    auto operator()(T1 const s, T2 const n) const
     {
       return s + n;
     }

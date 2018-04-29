@@ -72,7 +72,8 @@ namespace recipe_3_01 {
 
   // void forward_declared_function() = delete; // error
 
-  template <typename T> void run(T) = delete;
+  template <typename T>
+  void run(T) = delete;
   void run(long)
   {
   }

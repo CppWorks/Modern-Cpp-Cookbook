@@ -27,7 +27,8 @@ namespace recipe_3_09 {
     }
   } // namespace details
 
-  template <class F, class T> auto apply(F&& f, T&& t)
+  template <class F, class T>
+  auto apply(F&& f, T&& t)
   {
     return details::apply(
       std::forward<F>(f), std::forward<T>(t),

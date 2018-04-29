@@ -84,7 +84,8 @@ namespace recipe_9_03 {
     }
   };
 
-  template <typename T> class container {
+  template <typename T>
+  class container {
     std::vector<T> data;
     mutable std::mutex mutex;
 

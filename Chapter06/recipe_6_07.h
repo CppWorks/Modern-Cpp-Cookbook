@@ -16,7 +16,8 @@ namespace recipe_6_07 {
   using tstring
     = std::basic_string<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
 
-  template <typename CharT> inline tstring<CharT> to_upper(tstring<CharT> text)
+  template <typename CharT>
+  inline tstring<CharT> to_upper(tstring<CharT> text)
   {
     std::transform(std::begin(text), std::end(text), std::begin(text), toupper);
     return text;

@@ -8,7 +8,8 @@ namespace recipe_2_07 {
 
     namespace binary_literals {
       namespace binary_literals_internals {
-        template <typename CharT, char... bits> struct binary_struct;
+        template <typename CharT, char... bits>
+        struct binary_struct;
 
         template <typename CharT, char... bits>
         struct binary_struct<CharT, '0', bits...> {
@@ -21,12 +22,14 @@ namespace recipe_2_07 {
                                         | binary_struct<CharT, bits...>::value };
         };
 
-        template <typename CharT> struct binary_struct<CharT> {
+        template <typename CharT>
+        struct binary_struct<CharT> {
           static constexpr CharT value{ 0 };
         };
       } // namespace binary_literals_internals
 
-      template <char... bits> constexpr byte8 operator""_b8()
+      template <char... bits>
+      constexpr byte8 operator""_b8()
       {
         static_assert(sizeof...(bits) <= 8,
                       "binary literal b8 must be up to 8 digits long");
@@ -34,7 +37,8 @@ namespace recipe_2_07 {
         return binary_literals_internals::binary_struct<byte8, bits...>::value;
       }
 
-      template <char... bits> constexpr byte16 operator""_b16()
+      template <char... bits>
+      constexpr byte16 operator""_b16()
       {
         static_assert(sizeof...(bits) <= 16,
                       "binary literal b16 must be up to 16 digits long");
@@ -42,7 +46,8 @@ namespace recipe_2_07 {
         return binary_literals_internals::binary_struct<byte16, bits...>::value;
       }
 
-      template <char... bits> constexpr byte32 operator""_b32()
+      template <char... bits>
+      constexpr byte32 operator""_b32()
       {
         static_assert(sizeof...(bits) <= 32,
                       "binary literal b32 must be up to 32 digits long");

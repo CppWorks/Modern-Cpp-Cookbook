@@ -1,4 +1,5 @@
-template <int const& Size> class test {
+template <int const& Size>
+class test {
 };
 
 static int Size1 = 10;

@@ -6,7 +6,8 @@
 using namespace std::string_literals;
 
 namespace recipe_4_04 {
-  template <typename T> void func(typename T::value_type const a)
+  template <typename T>
+  void func(typename T::value_type const a)
   {
     std::cout << "func<>" << std::endl;
   }
@@ -15,7 +16,8 @@ namespace recipe_4_04 {
     std::cout << "func" << std::endl;
   }
 
-  template <typename T> struct some_type {
+  template <typename T>
+  struct some_type {
     using value_type = T;
   };
 
@@ -48,7 +50,8 @@ namespace recipe_4_04 {
   template <typename Test, typename T = void>
   using DisableIf = typename std::enable_if<!Test::value, T>::type;
 
-  template <typename T, typename = EnableIf<std::is_pod<T>>> class pod_wrapper3 {
+  template <typename T, typename = EnableIf<std::is_pod<T>>>
+  class pod_wrapper3 {
     T value;
   };
 
@@ -58,13 +61,15 @@ namespace recipe_4_04 {
     return a * b;
   }
 
-  template <typename T> auto compute(T const a, T const b)
+  template <typename T>
+  auto compute(T const a, T const b)
   {
     static_assert(std::is_integral<T>, "An integral type expected");
     return a + b;
   }
 
-  template <typename T, typename = void> auto compute(T const a, T const b)
+  template <typename T, typename = void>
+  auto compute(T const a, T const b)
   {
     static_assert(!std::is_integral<T>, "A non-integral type expected");
     return a * b;

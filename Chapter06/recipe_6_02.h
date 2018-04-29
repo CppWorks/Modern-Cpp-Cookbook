@@ -13,7 +13,8 @@ namespace recipe_6_02 {
   template <typename Time = std::chrono::microseconds,
             typename Clock = std::chrono::high_resolution_clock>
   struct perf_timer {
-    template <typename F, typename... Args> static Time duration(F&& f, Args... args)
+    template <typename F, typename... Args>
+    static Time duration(F&& f, Args... args)
     {
       auto start = Clock::now();
 
@@ -25,7 +26,8 @@ namespace recipe_6_02 {
     }
   };
 
-  template <typename T> void print_clock()
+  template <typename T>
+  void print_clock()
   {
     std::cout << "precision: " << (1000000.0 * double(T::period::num)) / (T::period::den)
               << std::endl;

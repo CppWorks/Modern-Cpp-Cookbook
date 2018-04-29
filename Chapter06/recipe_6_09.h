@@ -13,17 +13,20 @@ namespace recipe_6_09 {
     return t1 * t2;
   }
 
-  template <typename T> struct pod_wrapper {
+  template <typename T>
+  struct pod_wrapper {
     static_assert(std::is_pod<T>::value, "Type is not a POD!");
     T value;
   };
 
-  template <typename T> struct const_wrapper {
+  template <typename T>
+  struct const_wrapper {
     typedef typename std::conditional<std::is_const<T>::value, T,
                                       typename std::add_const<T>::type>::type const_type;
   };
 
-  template <typename T> auto process(T arg)
+  template <typename T>
+  auto process(T arg)
   {
 #ifdef CONSTEXPR_IF_AVAILABLE
     if constexpr (std::is_same<T, bool>::value)

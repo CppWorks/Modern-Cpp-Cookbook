@@ -48,7 +48,8 @@ namespace recipe_8_03 {
     g_mutex.unlock();
   }
 
-  template <class M> class lock_guard {
+  template <class M>
+  class lock_guard {
   public:
     typedef M mutex_type;
 
@@ -75,7 +76,8 @@ namespace recipe_8_03 {
     M& mtx;
   };
 
-  template <typename T> struct container {
+  template <typename T>
+  struct container {
     std::mutex mutex;
     std::vector<T> data;
   };
@@ -92,7 +94,8 @@ namespace recipe_8_03 {
     c2.data.push_back(value);
   }
 
-  template <typename T> void print_container(container<T> const& c)
+  template <typename T>
+  void print_container(container<T> const& c)
   {
     for (auto const& e : c.data)
       std::cout << e << ' ';
