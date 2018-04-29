@@ -21,9 +21,7 @@ namespace recipe_4_06 {
     return Item{};
   }
 
-  [[deprecated("Use func2()")]] void func()
-  {
-  }
+  [[deprecated("Use func2()")]] void func() {}
 
   class[[deprecated]] foo{};
 
@@ -32,12 +30,8 @@ namespace recipe_4_06 {
     return 2 * b;
   }
 
-  void option1()
-  {
-  }
-  void option2()
-  {
-  }
+  void option1() {}
+  void option2() {}
 #endif
 
   void execute()

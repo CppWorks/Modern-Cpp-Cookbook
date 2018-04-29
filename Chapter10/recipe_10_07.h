@@ -3,9 +3,7 @@
 namespace recipe_10_07 {
   class Singleton {
   private:
-    Singleton()
-    {
-    }
+    Singleton() {}
 
   public:
     Singleton(Singleton const&) = delete;
@@ -21,9 +19,7 @@ namespace recipe_10_07 {
   template <class T>
   class SingletonBase {
   protected:
-    SingletonBase()
-    {
-    }
+    SingletonBase() {}
 
   public:
     SingletonBase(SingletonBase const&) = delete;
@@ -37,9 +33,7 @@ namespace recipe_10_07 {
   };
 
   class Single : public SingletonBase<Single> {
-    Single()
-    {
-    }
+    Single() {}
     friend class SingletonBase<Single>;
 
   public:

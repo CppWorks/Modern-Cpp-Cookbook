@@ -31,12 +31,8 @@ namespace recipe_9_05 {
   enum options { one = 1, two, three };
 
   struct base {
-    virtual void run()
-    {
-    }
-    virtual ~base()
-    {
-    }
+    virtual void run() {}
+    virtual ~base() {}
   };
 
   struct derived : public base {

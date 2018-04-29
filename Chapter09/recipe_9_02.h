@@ -3,9 +3,7 @@
 #include <iostream>
 
 namespace recipe_9_02 {
-  void func_no_throw() noexcept
-  {
-  }
+  void func_no_throw() noexcept {}
 
   template <typename T>
   T generic_func_1() noexcept(std::is_nothrow_constructible<T>::value)
@@ -37,9 +35,7 @@ namespace recipe_9_02 {
   }
 
   struct foo {
-    foo()
-    {
-    }
+    foo() {}
   };
 
   void execute()

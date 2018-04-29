@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <iostream>
 
 namespace recipe_1_10 {
@@ -47,25 +48,17 @@ namespace recipe_1_10 {
     }
   };
 
-  void bar(foo const f)
-  {
-  }
+  void bar(foo const f) {}
 
   enum ItemSizes { DefaultHeight, Large, MaxSize };
 
   class string_buffer {
   public:
-    explicit string_buffer()
-    {
-    }
+    explicit string_buffer() {}
 
-    explicit string_buffer(size_t const size)
-    {
-    }
+    explicit string_buffer(size_t const size) {}
 
-    explicit string_buffer(char const* const ptr)
-    {
-    }
+    explicit string_buffer(char const* const ptr) {}
 
     explicit operator bool() const
     {
@@ -94,6 +87,10 @@ namespace recipe_1_10 {
 
   void execute()
   {
+    std::cout << "\nRecipe 1.10: Using explicit constructors and conversion operators to "
+                 "avoid implicit conversion."
+              << "\n---------------------------------------------------------------------"
+                 "--------------------------\n";
     {
       foo f1;   // foo
       foo f2{}; // foo
@@ -110,9 +107,9 @@ namespace recipe_1_10 {
       bool flag = f1;
       if (f2) {
       }
-      std::cout << f3 + f4 << std::endl;
-      if (f5 == f6) {
-      }
+      std::cout << "\nf3 + f4 = " << f3 + f4;
+      assert(f5 == f6);
+      std::cout << "\nf5 == f6\n\n";
     }
 
     {
@@ -133,7 +130,8 @@ namespace recipe_1_10 {
       // std::cout << b4 + b5 << std::endl;
       // if (b4 == b5) {}
 
-      std::cout << static_cast<bool>(b4) + static_cast<bool>(b5) << std::endl;
+      std::cout << "\nb4 + b5 = " << static_cast<bool>(b4) + static_cast<bool>(b5)
+                << std::endl;
       if (static_cast<bool>(b4) == static_cast<bool>(b5)) {
       }
     }

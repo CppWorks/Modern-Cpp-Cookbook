@@ -136,9 +136,7 @@ namespace std {
         static constexpr const size_type npos = -1; // size_type(-1);
 
         // [string.view.cons], construct/copy
-        constexpr inline basic_string_view() _NOEXCEPT : __data(nullptr), __size(0)
-        {
-        }
+        constexpr inline basic_string_view() _NOEXCEPT : __data(nullptr), __size(0) {}
 
         constexpr inline basic_string_view(const basic_string_view&) _NOEXCEPT = default;
 

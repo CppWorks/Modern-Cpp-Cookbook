@@ -100,16 +100,20 @@ namespace recipe_1_09 {
 
   void execute()
   {
+    std::cout << "\nRecipe 1.09: Enabling range-based for loops for custom types."
+              << "\n-------------------------------------------------------------\n";
     {
       dummy_array<int, 3> arr;
       arr.SetAt(0, 1);
       arr.SetAt(1, 2);
       arr.SetAt(2, 3);
 
+      std::cout << "\nPrint custom array:\n";
       for (auto&& e : arr) {
         std::cout << e << std::endl;
       }
 
+      std::cout << "\nPrint custom array with separate function:\n";
       print_dummy_array(arr);
     }
   }

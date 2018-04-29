@@ -7,9 +7,7 @@ void function_that_throws()
   throw std::runtime_error("error");
 }
 
-void function_no_throw()
-{
-}
+void function_no_throw() {}
 
 class OnTheLine : public Catch::MatcherBase<point3d> {
   point3d const p1;

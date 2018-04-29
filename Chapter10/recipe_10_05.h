@@ -8,12 +8,8 @@ namespace recipe_10_05 {
       int data_1;
       int data_2;
 
-      void action1()
-      {
-      }
-      void action2()
-      {
-      }
+      void action1() {}
+      void action2() {}
 
       friend class Friend;
 
@@ -37,12 +33,8 @@ namespace recipe_10_05 {
     int data_1;
     int data_2;
 
-    void action1()
-    {
-    }
-    void action2()
-    {
-    }
+    void action1() {}
+    void action2() {}
 
     friend class Attorney;
 

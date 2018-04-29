@@ -175,9 +175,7 @@ namespace recipe_1_03 {
           , b_(b)
         {
         }
-        foo(std::initializer_list<int> l)
-        {
-        }
+        foo(std::initializer_list<int> l) {}
       };
 
       foo f{ 1, 2 }; // calls constructor with initializer_list<int>

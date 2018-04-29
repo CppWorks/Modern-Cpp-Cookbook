@@ -101,9 +101,7 @@ namespace recipe_10_06 {
     class controlbase {
     public:
       virtual void draw() = 0;
-      virtual ~controlbase()
-      {
-      }
+      virtual ~controlbase() {}
     };
 
     template <class T>

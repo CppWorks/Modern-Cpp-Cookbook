@@ -42,13 +42,9 @@ namespace recipe_9_06 {
       std::cout << "null" << std::endl;
   }
 
-  void some_function(std::unique_ptr<foo> p)
-  {
-  }
+  void some_function(std::unique_ptr<foo> p) {}
 
-  void some_other_function(std::unique_ptr<foo> p, int const v)
-  {
-  }
+  void some_other_function(std::unique_ptr<foo> p, int const v) {}
 
   int function_that_throws()
   {

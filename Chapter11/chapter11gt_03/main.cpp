@@ -52,9 +52,7 @@ void function_that_throws()
   throw std::runtime_error("error");
 }
 
-void function_no_throw()
-{
-}
+void function_no_throw() {}
 
 TEST(TestAssertions, Exceptions)
 {

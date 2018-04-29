@@ -74,9 +74,7 @@ namespace recipe_3_01 {
 
   template <typename T>
   void run(T) = delete;
-  void run(long)
-  {
-  }
+  void run(long) {}
 
   void execute()
   {
