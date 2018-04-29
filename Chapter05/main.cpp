@@ -9,7 +9,8 @@
 #include "recipe_5_09.h"
 #include "recipe_5_10.h"
 
-int main() {
+int main()
+{
   recipe_5_01::execute();
   recipe_5_02::execute();
   recipe_5_03::execute();

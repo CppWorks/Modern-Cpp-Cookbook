@@ -3,83 +3,97 @@
 #include <utility>
 
 namespace recipe_3_01 {
-class foo_not_copiable {
- public:
-  foo_not_copiable(){};
+  class foo_not_copiable {
+  public:
+    foo_not_copiable(){};
 
- private:
-  foo_not_copiable(foo_not_copiable const&);
-  foo_not_copiable& operator=(foo_not_copiable const&);
-};
+  private:
+    foo_not_copiable(foo_not_copiable const&);
+    foo_not_copiable& operator=(foo_not_copiable const&);
+  };
 
-class bar_not_copiable {
- public:
-  bar_not_copiable() = default;
+  class bar_not_copiable {
+  public:
+    bar_not_copiable() = default;
 
-  bar_not_copiable(bar_not_copiable const&) = delete;
-  bar_not_copiable& operator=(bar_not_copiable const&) = delete;
-};
+    bar_not_copiable(bar_not_copiable const&) = delete;
+    bar_not_copiable& operator=(bar_not_copiable const&) = delete;
+  };
 
-struct Data {};
+  struct Data {
+  };
 
-class data_wrapper {
-  Data* data;
+  class data_wrapper {
+    Data* data;
 
- public:
-  data_wrapper(Data* d = nullptr) : data(d) {}
-  ~data_wrapper() { delete data; }
-
-  data_wrapper(data_wrapper const&) = delete;
-  data_wrapper& operator=(data_wrapper const&) = delete;
-
-  data_wrapper(data_wrapper&& o) : data(std::move(o.data)) { o.data = nullptr; }
-
-  data_wrapper& operator=(data_wrapper&& o) {
-    if (this != &o) {
+  public:
+    data_wrapper(Data* d = nullptr)
+      : data(d)
+    {
+    }
+    ~data_wrapper()
+    {
       delete data;
-      data = std::move(o.data);
+    }
+
+    data_wrapper(data_wrapper const&) = delete;
+    data_wrapper& operator=(data_wrapper const&) = delete;
+
+    data_wrapper(data_wrapper&& o)
+      : data(std::move(o.data))
+    {
       o.data = nullptr;
     }
 
-    return *this;
-  }
-};
+    data_wrapper& operator=(data_wrapper&& o)
+    {
+      if (this != &o) {
+        delete data;
+        data = std::move(o.data);
+        o.data = nullptr;
+      }
 
-class foo {
- public:
-  foo() = default;
+      return *this;
+    }
+  };
 
-  inline foo& operator=(foo const&);
-};
+  class foo {
+  public:
+    foo() = default;
 
-inline foo& foo::operator=(foo const&) = default;
+    inline foo& operator=(foo const&);
+  };
 
-// void forward_declared_function();
+  inline foo& foo::operator=(foo const&) = default;
 
-// ...
+  // void forward_declared_function();
 
-// void forward_declared_function() = delete; // error
+  // ...
 
-template <typename T>
-void run(T) = delete;
-void run(long) {}
+  // void forward_declared_function() = delete; // error
 
-void execute() {
+  template <typename T> void run(T) = delete;
+  void run(long)
   {
+  }
+
+  void execute()
+  {
+    {
       // foo_not_copiable f1, f2;
       // foo_not_copiable f3 = f1; // error
       // f1 = f2; // error
-  }
+    }
 
-  {
+    {
       // bar_not_copiable f1, f2;
       // foo_not_copiable f3 = f1; // error
       // f1 = f2; // error
-  }
+    }
 
-  {
-    // run(42); // error
-    run(42L);  // OK
+    {
+      // run(42); // error
+      run(42L); // OK
+    }
   }
-}
-}  // namespace recipe_3_01
+} // namespace recipe_3_01

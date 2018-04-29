@@ -13,7 +13,8 @@
 // #include "recipe_1_12.h"
 // #include "recipe_1_13.h"
 
-int main() {
+int main()
+{
   recipe_1_01::execute();
   recipe_1_02::execute();
   recipe_1_03::execute();

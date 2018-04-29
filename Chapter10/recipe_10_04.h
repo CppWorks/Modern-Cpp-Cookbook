@@ -5,75 +5,103 @@
 #include <vector>
 
 namespace recipe_10_04 {
-class control {
- private:
-  virtual void paint() = 0;
+  class control {
+  private:
+    virtual void paint() = 0;
 
- protected:
-  virtual void initialize_impl() { std::cout << "initializing control..." << std::endl; }
+  protected:
+    virtual void initialize_impl()
+    {
+      std::cout << "initializing control..." << std::endl;
+    }
 
-  virtual void erase_background() {
-    std::cout << "erasing control background..." << std::endl;
-  }
+    virtual void erase_background()
+    {
+      std::cout << "erasing control background..." << std::endl;
+    }
 
- public:
-  void draw() {
-    erase_background();
-    paint();
-  }
+  public:
+    void draw()
+    {
+      erase_background();
+      paint();
+    }
 
-  void initialize() { initialize_impl(); }
+    void initialize()
+    {
+      initialize_impl();
+    }
 
-  virtual ~control() { std::cout << "destroying control..." << std::endl; }
-};
+    virtual ~control()
+    {
+      std::cout << "destroying control..." << std::endl;
+    }
+  };
 
-class button : public control {
- private:
-  virtual void paint() override { std::cout << "painting button..." << std::endl; }
+  class button : public control {
+  private:
+    virtual void paint() override
+    {
+      std::cout << "painting button..." << std::endl;
+    }
 
- protected:
-  virtual void initialize_impl() {
-    control::initialize_impl();
-    std::cout << "initializing button..." << std::endl;
-  }
+  protected:
+    virtual void initialize_impl()
+    {
+      control::initialize_impl();
+      std::cout << "initializing button..." << std::endl;
+    }
 
-  virtual void erase_background() override {
-    control::erase_background();
-    std::cout << "erasing button background..." << std::endl;
-  }
+    virtual void erase_background() override
+    {
+      control::erase_background();
+      std::cout << "erasing button background..." << std::endl;
+    }
 
- public:
-  ~button() { std::cout << "destroying button..." << std::endl; }
-};
+  public:
+    ~button()
+    {
+      std::cout << "destroying button..." << std::endl;
+    }
+  };
 
-class checkbox : public button {
- private:
-  virtual void paint() override { std::cout << "painting checkbox..." << std::endl; }
+  class checkbox : public button {
+  private:
+    virtual void paint() override
+    {
+      std::cout << "painting checkbox..." << std::endl;
+    }
 
- protected:
-  virtual void erase_background() override {
-    button::erase_background();
-    std::cout << "erasing checkbox background..." << std::endl;
-  }
+  protected:
+    virtual void erase_background() override
+    {
+      button::erase_background();
+      std::cout << "erasing checkbox background..." << std::endl;
+    }
 
- public:
-  ~checkbox() { std::cout << "destroying checkbox..." << std::endl; }
-};
+  public:
+    ~checkbox()
+    {
+      std::cout << "destroying checkbox..." << std::endl;
+    }
+  };
 
-void execute() {
+  void execute()
   {
-    std::vector<std::shared_ptr<control>> controls;
+    {
+      std::vector<std::shared_ptr<control>> controls;
 
-    controls.push_back(std::make_shared<button>());
-    controls.push_back(std::make_shared<checkbox>());
+      controls.push_back(std::make_shared<button>());
+      controls.push_back(std::make_shared<checkbox>());
 
-    for (auto& c : controls) c->draw();
+      for (auto& c : controls)
+        c->draw();
+    }
+
+    {
+      button b;
+      b.initialize();
+      b.draw();
+    }
   }
-
-  {
-    button b;
-    b.initialize();
-    b.draw();
-  }
-}
-}  // namespace recipe_10_04
+} // namespace recipe_10_04

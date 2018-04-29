@@ -7,7 +7,8 @@
 #include "recipe_9_07.h"
 #include "recipe_9_08.h"
 
-int main() {
+int main()
+{
   recipe_9_01::execute();
   recipe_9_02::execute();
   recipe_9_03::execute();

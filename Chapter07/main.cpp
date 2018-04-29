@@ -11,7 +11,8 @@
 #include "recipe_7_11.h"
 #include "recipe_7_12.h"
 
-int main() {
+int main()
+{
   recipe_7_01::execute();
   recipe_7_02::execute();
   recipe_7_03::execute();
