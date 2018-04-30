@@ -190,12 +190,12 @@ void execute() {
 
   {
     // Direct-list-initialization and copy-list-initialization.
-    auto a = {42}; // a -> initializer_list<int>
-    auto b{42}; // b -> int
-    auto c = {4, 2}; // c -> initializer_list<int>
+    auto a = {42};    // a -> initializer_list<int>
+    auto b{42};       // b -> int
+    auto c = {4, 2};  // c -> initializer_list<int>
 
     // TD<decltype(c)> cType;
-    
+
     // Error! Direct-list-initialization of ‘auto’ requires exactly one element.
     // auto d{4, 2};
   }
