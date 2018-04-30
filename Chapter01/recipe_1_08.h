@@ -13,7 +13,7 @@ namespace recipe_1_08 {
 
   void print_rate(int const rate)
   {
-    std::cout << rate << std::endl;
+    std::cout << rate << " ";
   }
 
   std::multimap<int, bool> getRates2()
@@ -29,57 +29,66 @@ namespace recipe_1_08 {
     {
       auto rates = getRates();
 
-      // using iterators
-      std::cout << "\nUsing iterators:\n";
-
+      std::cout << "\nObsolete/old style using iterators.\n";
       for (auto it = rates.begin(); it != rates.end(); ++it) {
-        std::cout << *it << std::endl;
+        std::cout << *it << " ";
       }
+      std::cout << "\n";
 
-      // using an index
-      std::cout << "\nUsing an index:\n";
-
+      std::cout << "\nObsolete/old style using an index:\n";
       for (size_t i = 0; i < rates.size(); ++i) {
-        std::cout << rates[i] << std::endl;
+        std::cout << rates[i] << " ";
       }
+      std::cout << "\n";
     }
 
     {
       auto rates = getRates();
 
-      std::cout << "\nUsing for_each:\n";
+      std::cout << "\nObsolete/old style using for_each:\n";
       std::for_each(rates.begin(), rates.end(), print_rate);
-
-      std::cout << "\nUsing for_each with lambda:\n";
+      std::cout << "\n";
+      std::cout << "\nObsolete/old style using for_each with a lambda:\n";
       std::for_each(rates.begin(), rates.end(),
-                    [](auto const rate) { std::cout << rate << std::endl; });
+                    [](auto const rate) { std::cout << rate << " "; });
+      std::cout << "\n";
     }
 
     {
-      std::cout << "\nUsing ranges:\n";
+      std::cout << "\nRange-based for loops can be used in various ways:\n\n";
+
+      std::cout << "By committing to a specific type for the elements of the sequence:\n";
       auto rates = getRates();
       for (int rate : rates)
-        std::cout << rate << std::endl;
+        std::cout << rate << " ";
+      std::cout << "\n";
 
       for (int& rate : rates)
         rate *= 2;
 
-      std::cout << "\nUsing ranges with rvalue:\n";
+      std::cout << "\nBy not specifying a type and letting the compiler deduce it:\n";
       for (auto&& rate : getRates())
-        std::cout << rate << std::endl;
+        std::cout << rate << " ";
+      std::cout << "\n";
 
       for (auto& rate : rates)
         rate *= 2;
 
-      std::cout << "Using ranges with const reference:\n";
       for (auto const& rate : rates)
-        std::cout << rate << std::endl;
+        std::cout << rate << " ";
+      std::cout << "\n";
+
+      std::cout << "\nUsing structured bindings and decomposition declaration in C++17\n";
+      for (auto && [ rate, flag ] : getRates2())
+        std::cout << rate << " ";
+      std::cout << "\n";
     }
 
     {
       std::cout << "\nUsing ranges with a map:\n";
       for (auto&& kvp : getRates2())
-        std::cout << kvp.first << std::endl;
+        std::cout << kvp.first << " ";
+      std::cout << "\n";
 
       std::cout << "\nUsing ranges with a map and std::tie:\n";
       for (auto&& kvp : getRates2()) {
@@ -87,12 +96,9 @@ namespace recipe_1_08 {
         int rate;
         std::tie(rate, flag) = kvp;
 
-        std::cout << rate << std::endl;
+        std::cout << rate << " ";
       }
-
-      std::cout << "\nUsing destructuring under C++17:\n";
-      for (auto && [ rate, flag ] : getRates2())
-        std::cout << rate << std::endl;
+      std::cout << "\n";
     }
   }
 } // namespace recipe_1_08

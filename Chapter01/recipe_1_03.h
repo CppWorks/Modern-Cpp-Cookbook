@@ -46,19 +46,8 @@ namespace recipe_1_03 {
 
   void execute()
   {
-<<<<<<< HEAD
-    // Direct-list-initialization and copy-list-initialization.
-    auto a = { 42 };   // a -> initializer_list<int>
-    auto b{ 42 };      // b -> int
-    auto c = { 4, 2 }; // c -> initializer_list<int>
-
-    // TD<decltype(c)> cType;
-
-    // Error! Direct-list-initialization of ‘auto’ requires exactly one element.
-    // auto d{4, 2};
-=======
-    std::cout << "\nRecipe 1.03: Understanding uniform initialization.\n"
-              << "--------------------------------------------------\n";
+    std::cout << "\nRecipe 1.03: Understanding uniform initialization."
+              << "\n--------------------------------------------------\n";
     {
       int a = 42;
       double b = 1.2;
@@ -242,6 +231,5 @@ namespace recipe_1_03 {
       // Error! Direct-list-initialization of ‘auto’ requires exactly one element.
       // auto d{4, 2};
     }
->>>>>>> 1d1f9dd7b4653fef741d95a230da88fc3a5df9c0
   }
 } // namespace recipe_1_03
