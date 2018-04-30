@@ -4,76 +4,112 @@
 #include <string_view>
 
 namespace recipe_10_02 {
-class control_pimpl {
-  std::string text;
-  int width = 0;
-  int height = 0;
-  bool visible = true;
+  class control_pimpl {
+    std::string text;
+    int width = 0;
+    int height = 0;
+    bool visible = true;
 
-  void draw() {
-    std::cout << "control " << std::endl
-              << "  visible: " << std::boolalpha << visible << std::noboolalpha
-              << std::endl
-              << "  size: " << width << ", " << height << std::endl
-              << "  text: " << text << std::endl;
+    void draw()
+    {
+      std::cout << "control " << std::endl
+                << "  visible: " << std::boolalpha << visible << std::noboolalpha
+                << std::endl
+                << "  size: " << width << ", " << height << std::endl
+                << "  text: " << text << std::endl;
+    }
+
+  public:
+    void set_text(std::string_view t)
+    {
+      text = t.data();
+      draw();
+    }
+
+    void resize(int const w, int const h)
+    {
+      width = w;
+      height = h;
+      draw();
+    }
+
+    void show()
+    {
+      visible = true;
+      draw();
+    }
+
+    void hide()
+    {
+      visible = false;
+      draw();
+    }
+  };
+
+  control::control()
+    : pimpl(new control_pimpl(), [](control_pimpl* pimpl) { delete pimpl; })
+  {
   }
 
- public:
-  void set_text(std::string_view t) {
-    text = t.data();
-    draw();
+  void control::set_text(std::string_view text)
+  {
+    pimpl->set_text(text);
   }
 
-  void resize(int const w, int const h) {
-    width = w;
-    height = h;
-    draw();
+  void control::resize(int const w, int const h)
+  {
+    pimpl->resize(w, h);
   }
 
-  void show() {
-    visible = true;
-    draw();
+  void control::show()
+  {
+    pimpl->show();
   }
 
-  void hide() {
-    visible = false;
-    draw();
+  void control::hide()
+  {
+    pimpl->hide();
   }
-};
 
-control::control()
-    : pimpl(new control_pimpl(), [](control_pimpl* pimpl) { delete pimpl; }) {}
+  control_copyable::control_copyable()
+    : pimpl(new control_pimpl(), [](control_pimpl* pimpl) { delete pimpl; })
+  {
+  }
 
-void control::set_text(std::string_view text) { pimpl->set_text(text); }
+  control_copyable::control_copyable(control_copyable&&) noexcept = default;
+  control_copyable& control_copyable::operator=(control_copyable&&) noexcept = default;
 
-void control::resize(int const w, int const h) { pimpl->resize(w, h); }
+  control_copyable::control_copyable(const control_copyable& op)
+    : pimpl(new control_pimpl(*op.pimpl), [](control_pimpl* pimpl) { delete pimpl; })
+  {
+  }
 
-void control::show() { pimpl->show(); }
-
-void control::hide() { pimpl->hide(); }
-
-control_copyable::control_copyable()
-    : pimpl(new control_pimpl(), [](control_pimpl* pimpl) { delete pimpl; }) {}
-
-control_copyable::control_copyable(control_copyable&&) noexcept = default;
-control_copyable& control_copyable::operator=(control_copyable&&) noexcept = default;
-
-control_copyable::control_copyable(const control_copyable& op)
-    : pimpl(new control_pimpl(*op.pimpl), [](control_pimpl* pimpl) { delete pimpl; }) {}
-
-control_copyable& control_copyable::operator=(const control_copyable& op) {
-  if (this != &op) {
-    pimpl = std::unique_ptr<control_pimpl, void (*)(control_pimpl*)>(
+  control_copyable& control_copyable::operator=(const control_copyable& op)
+  {
+    if (this != &op) {
+      pimpl = std::unique_ptr<control_pimpl, void (*)(control_pimpl*)>(
         new control_pimpl(*op.pimpl), [](control_pimpl* pimpl) { delete pimpl; });
+    }
+    return *this;
   }
-  return *this;
-}
 
-void control_copyable::set_text(std::string_view text) { pimpl->set_text(text); }
+  void control_copyable::set_text(std::string_view text)
+  {
+    pimpl->set_text(text);
+  }
 
-void control_copyable::resize(int const w, int const h) { pimpl->resize(w, h); }
+  void control_copyable::resize(int const w, int const h)
+  {
+    pimpl->resize(w, h);
+  }
 
-void control_copyable::show() { pimpl->show(); }
+  void control_copyable::show()
+  {
+    pimpl->show();
+  }
 
-void control_copyable::hide() { pimpl->hide(); }
-}  // namespace recipe_10_02
+  void control_copyable::hide()
+  {
+    pimpl->hide();
+  }
+} // namespace recipe_10_02

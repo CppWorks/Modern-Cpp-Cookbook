@@ -8,66 +8,67 @@
 namespace fs = std::experimental::filesystem;
 
 namespace recipe_7_09 {
-void execute() {
-  auto path = fs::current_path();
-  auto initialpath = path / "sample.plays";
-  assert(fs::exists(initialpath));
-
-  auto filepath = path / "sample.dat";
-  auto temppath = path / "sample.tmp";
-  auto err = std::error_code{};
-
-  // make a copy of the original file
+  void execute()
   {
-    auto success = fs::copy_file(initialpath, filepath, err);
-    if (!success || err) {
-      std::cout << err.message() << std::endl;
-      return;
-    }
-  }
+    auto path = fs::current_path();
+    auto initialpath = path / "sample.plays";
+    assert(fs::exists(initialpath));
 
-  // remove content from file
-  {
-    std::ifstream in(filepath);
-    if (!in.is_open()) {
-      std::cout << "File could not be opened!" << std::endl;
-      return;
-    }
+    auto filepath = path / "sample.dat";
+    auto temppath = path / "sample.tmp";
+    auto err = std::error_code{};
 
-    std::ofstream out(temppath, std::ios::trunc);
-    if (!out.is_open()) {
-      std::cout << "Temporary file could not be created!" << std::endl;
-      return;
-    }
-
-    auto line = std::string{};
-    while (std::getline(in, line)) {
-      if (!line.empty() && line.at(0) != ';') {
-        out << line << '\n';
+    // make a copy of the original file
+    {
+      auto success = fs::copy_file(initialpath, filepath, err);
+      if (!success || err) {
+        std::cout << err.message() << std::endl;
+        return;
       }
     }
 
-    in.close();
-    out.close();
+    // remove content from file
+    {
+      std::ifstream in(filepath);
+      if (!in.is_open()) {
+        std::cout << "File could not be opened!" << std::endl;
+        return;
+      }
 
-    auto success = fs::remove(filepath, err);
-    if (!success || err) {
-      std::cout << err.message() << std::endl;
-      return;
+      std::ofstream out(temppath, std::ios::trunc);
+      if (!out.is_open()) {
+        std::cout << "Temporary file could not be created!" << std::endl;
+        return;
+      }
+
+      auto line = std::string{};
+      while (std::getline(in, line)) {
+        if (!line.empty() && line.at(0) != ';') {
+          out << line << '\n';
+        }
+      }
+
+      in.close();
+      out.close();
+
+      auto success = fs::remove(filepath, err);
+      if (!success || err) {
+        std::cout << err.message() << std::endl;
+        return;
+      }
+
+      fs::rename(temppath, filepath, err);
+      if (err) {
+        std::cout << err.message() << std::endl;
+      }
     }
 
-    fs::rename(temppath, filepath, err);
-    if (err) {
-      std::cout << err.message() << std::endl;
+    // clean up
+    {
+      auto success = fs::remove(filepath, err);
+      if (!success || err) {
+        std::cout << err.message() << std::endl;
+      }
     }
   }
-
-  // clean up
-  {
-    auto success = fs::remove(filepath, err);
-    if (!success || err) {
-      std::cout << err.message() << std::endl;
-    }
-  }
-}
-}  // namespace recipe_7_09
+} // namespace recipe_7_09

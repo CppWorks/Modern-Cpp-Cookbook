@@ -5,7 +5,8 @@
 #include "recipe_4_05.h"
 #include "recipe_4_06.h"
 
-int main() {
+int main()
+{
   recipe_4_01::execute();
   recipe_4_02::execute();
   recipe_4_03::execute();
