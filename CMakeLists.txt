@@ -7,7 +7,10 @@ project(Modern-Cpp-Cookbook VERSION 0.0.1)
 # find_package(Boost REQUIRED serialization system)
 # find_package(Threads)
 
-add_executable(Chapter01 ${CMAKE_SOURCE_DIR}/Chapter01/main.cpp )
+add_executable(Chapter01
+  ${CMAKE_SOURCE_DIR}/Chapter01/main.cpp
+  ${CMAKE_SOURCE_DIR}/Chapter01/recipe_1_11_1.cpp
+  ${CMAKE_SOURCE_DIR}/Chapter01/recipe_1_11_2.cpp)
 target_compile_features(Chapter01 PUBLIC cxx_std_17)
 
 # Create compile database

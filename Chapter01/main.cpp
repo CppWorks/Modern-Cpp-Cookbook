@@ -8,10 +8,11 @@
 #include "recipe_1_08.h"
 #include "recipe_1_09.h"
 #include "recipe_1_10.h"
-// #include "recipe_1_11_1.h"
-// #include "recipe_1_11_2.h"
-// #include "recipe_1_12.h"
-// #include "recipe_1_13.h"
+#include "recipe_1_11_1.h"
+#include "recipe_1_11_2.h"
+#include "recipe_1_11_3.h"
+#include "recipe_1_12.h"
+#include "recipe_1_13.h"
 
 int main()
 {
@@ -25,10 +26,13 @@ int main()
   recipe_1_08::execute();
   recipe_1_09::execute();
   recipe_1_10::execute();
-  // recipe_1_11::file1_run();
-  // recipe_1_11::file2_run();
-  // recipe_1_12::client::execute();
-  // recipe_1_13::execute();
+  // call the print functions defined in their translation units
+  // Note: the filex_run functions live in the same namespace which does not matter.
+  recipe_1_11_3::execute();
+  recipe_1_11::file1_run();
+  recipe_1_11::file2_run();
+  recipe_1_12::client::execute();
+  recipe_1_13::execute();
 
   return 0;
 }
