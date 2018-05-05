@@ -2,6 +2,7 @@
 
 #include <bitset>
 #include <iostream>
+#include <limits.h>
 #include <limits>
 
 namespace recipe_2_02 {
@@ -46,6 +47,9 @@ namespace recipe_2_02 {
 
   void execute()
   {
+    std::cout << "\nRecipe 2.02: Limits and other properties of numeric types."
+              << "\n----------------------------------------------------------\n";
+
     print_type_properties<unsigned short>();
     print_type_properties<double>();
     print_type_properties<int>();

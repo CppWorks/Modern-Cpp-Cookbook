@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <array>
+#include <functional>
 #include <iostream>
 #include <random>
 
@@ -38,6 +39,11 @@ namespace recipe_2_04 {
 
   void execute()
   {
+    std::cout << "\nRecipe 2.04: Initializing all bits of internal state of a "
+                 "pseudo-random number generator."
+              << "\n---------------------------------------------------------------------"
+                 "--------------------\n";
+
     monte_carlo_simulation();
   }
 } // namespace recipe_2_04

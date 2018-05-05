@@ -4,6 +4,7 @@
 #include <chrono>
 #include <complex>
 #include <string>
+#include <iostream>
 
 namespace recipe_2_06 {
   namespace compunits {
@@ -104,6 +105,9 @@ namespace recipe_2_06 {
 
   void execute()
   {
+    std::cout << "\nRecipe 2.06: ."
+              << "\n----------------------------------------------\n";
+
     {
       auto b{ true };    // boolean
       auto s{ "text" };  // const char[7]

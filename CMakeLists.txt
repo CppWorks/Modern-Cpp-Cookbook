@@ -13,6 +13,9 @@ add_executable(Chapter01
   ${CMAKE_SOURCE_DIR}/Chapter01/recipe_1_11_2.cpp)
 target_compile_features(Chapter01 PUBLIC cxx_std_17)
 
+add_executable(Chapter02 ${CMAKE_SOURCE_DIR}/Chapter02/main.cpp)
+target_compile_features(Chapter02 PUBLIC cxx_std_17)
+
 # Create compile database
 add_custom_target(compile_commands ALL)
 

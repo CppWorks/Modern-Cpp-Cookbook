@@ -43,6 +43,9 @@ namespace recipe_2_03 {
 
   void execute()
   {
+    std::cout << "\nRecipe 2.03: Generating pseudo-random numbers."
+              << "\n----------------------------------------------\n";
+
     {
       auto mtgen = std::mt19937{};
 

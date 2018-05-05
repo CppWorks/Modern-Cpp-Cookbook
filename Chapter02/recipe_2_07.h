@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace recipe_2_07 {
   namespace binary {
     using byte8 = unsigned char;
@@ -60,6 +62,9 @@ namespace recipe_2_07 {
 
   void execute()
   {
+    std::cout << "\nRecipe 2.07: ."
+              << "\n----------------------------------------------\n";
+
     using namespace binary;
     using namespace binary_literals;
 
