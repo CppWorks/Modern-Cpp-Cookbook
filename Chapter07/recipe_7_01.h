@@ -170,4 +170,4 @@ namespace recipe_7_01 {
       delete[] input;
     }
   }
-} // namespace recipe_7_01
+}

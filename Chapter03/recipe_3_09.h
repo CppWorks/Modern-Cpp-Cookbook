@@ -25,7 +25,7 @@ namespace recipe_3_09 {
     {
       return std::invoke(std::forward<F>(f), std::get<I>(std::forward<T>(t))...);
     }
-  } // namespace details
+  }
 
   template <class F, class T>
   auto apply(F&& f, T&& t)
@@ -93,4 +93,4 @@ namespace recipe_3_09 {
       auto a = apply(add, std::make_tuple(1, 2));
     }
   }
-} // namespace recipe_3_09
+}

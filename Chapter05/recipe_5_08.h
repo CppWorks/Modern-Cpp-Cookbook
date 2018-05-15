@@ -60,4 +60,4 @@ namespace recipe_5_08 {
       *std::front_inserter(l) = 0;
     }
   }
-} // namespace recipe_5_08
+}

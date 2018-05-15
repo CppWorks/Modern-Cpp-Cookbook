@@ -221,4 +221,4 @@ namespace recipe_9_07 {
       m->take_apprentice(a);
     }
   }
-} // namespace recipe_9_07
+}

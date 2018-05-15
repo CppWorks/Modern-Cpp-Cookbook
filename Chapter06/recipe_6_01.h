@@ -77,4 +77,4 @@ namespace recipe_6_01 {
              == (12s).count());
     }
   }
-} // namespace recipe_6_01
+}

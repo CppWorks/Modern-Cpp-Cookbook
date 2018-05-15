@@ -88,4 +88,4 @@ namespace recipe_7_03 {
       sort_and_print(names, loc); // François John Robert adele Åke Øivind
     }
   }
-} // namespace recipe_7_03
+}

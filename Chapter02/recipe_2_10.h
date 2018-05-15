@@ -1,16 +1,17 @@
 #pragma once
 
+#include <iostream>
 #include <regex>
 #include <string>
-#include <iostream>
 
 namespace recipe_2_10 {
   using namespace std::string_literals;
 
   void execute()
   {
-    std::cout << "\nRecipe 2.10: Parsing the content of a string using regular expressions."
-              << "\n-----------------------------------------------------------------------\n";
+    std::cout
+      << "\nRecipe 2.10: Parsing the content of a string using regular expressions."
+      << "\n-----------------------------------------------------------------------\n";
 
     auto text{
       R"(

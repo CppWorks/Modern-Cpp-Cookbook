@@ -50,4 +50,4 @@ namespace recipe_9_02 {
               << noexcept(half_it(42)) << std::endl                       // false
               << noexcept(func(double_it, 42)) << std::endl;              // true
   }
-} // namespace recipe_9_02
+}

@@ -30,7 +30,7 @@ namespace recipe_4_05 {
             return static_cast<CharT>((1 << sizeof...(bits))
                                       | binary_eval<CharT, bits...>());
         }
-      } // namespace binary_literals_internals
+      }
 
       template <char... bits>
       constexpr byte8 operator""_b8()
@@ -58,8 +58,8 @@ namespace recipe_4_05 {
 
         return binary_literals_internals::binary_eval<byte32, bits...>();
       }
-    } // namespace binary_literals
-  }   // namespace binary
+    }
+  }
 }
 #endif CONSTEXPR_IF_AVAILABLE
 

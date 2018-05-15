@@ -59,4 +59,4 @@ namespace recipe_3_04 {
       std::cout << "fib(10): " << f10 << std::endl;
     }
   }
-} // namespace recipe_3_04
+}

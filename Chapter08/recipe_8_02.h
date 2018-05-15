@@ -57,4 +57,4 @@ namespace recipe_8_02 {
       }
     }
   }
-} // namespace recipe_8_02
+}

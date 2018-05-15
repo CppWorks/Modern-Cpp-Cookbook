@@ -35,4 +35,4 @@ namespace recipe_10_02 {
     void show();
     void hide();
   };
-} // namespace recipe_10_02
+}

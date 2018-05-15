@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace recipe_3_08 {
 
 // only works with Clang 3.9

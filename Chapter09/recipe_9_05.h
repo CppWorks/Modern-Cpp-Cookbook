@@ -101,4 +101,4 @@ namespace recipe_9_05 {
       double* pd = reinterpret_cast<double*>(pi);
     }
   }
-} // namespace recipe_9_05
+}

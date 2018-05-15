@@ -3,7 +3,8 @@
 #include <bitset>
 #include <iostream>
 #include <limits.h>
-// The numeric_limits<T> class template is available in the namespace std in the <limits> header.
+// The numeric_limits<T> class template is available in the namespace std in the <limits>
+// header.
 #include <limits>
 
 namespace recipe_2_02 {
@@ -34,7 +35,8 @@ namespace recipe_2_02 {
   template <typename T>
   void print_type_properties()
   {
-    // Use other static methods and static constants to retrieve other properties of a numeric type.
+    // Use other static methods and static constants to retrieve other properties of a
+    // numeric type.
     std::cout << "min=" << std::numeric_limits<T>::min() << std::endl
               << "max=" << std::numeric_limits<T>::max() << std::endl
               << "bits=" << std::numeric_limits<T>::digits << std::endl
@@ -84,4 +86,4 @@ namespace recipe_2_02 {
       static_cast<unsigned long long>(n)
     };
   }
-} // namespace recipe_2_02
+}

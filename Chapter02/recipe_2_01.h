@@ -68,11 +68,11 @@ namespace recipe_2_01 {
     auto d6 = std::stod("1.2345e+2");    // d6 =  123.45000000000000
     auto d7 = std::stod("0xF.6E6666p3"); // d7 =  123.44999980926514
 
-    auto d8 = std::stod("INF");       // d8 = inf
+    auto d8 = std::stod("INF"); // d8 = inf
     std::cout << "d8: " << d8 << std::endl;
     auto d9 = std::stod("-infinity"); // d9 = -inf
     auto d10 = std::stod("NAN");      // d10 = nan
     std::cout << "d10: " << d10 << std::endl;
-    auto d11 = std::stod("-nanabc");  // d11 = -nan
+    auto d11 = std::stod("-nanabc"); // d11 = -nan
   }
-} // namespace recipe_2_01
+}

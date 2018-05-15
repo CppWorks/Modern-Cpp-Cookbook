@@ -49,4 +49,4 @@ namespace recipe_5_06 {
       // v = {1, 2, 3, 4, 5}
     }
   }
-} // namespace recipe_5_06
+}

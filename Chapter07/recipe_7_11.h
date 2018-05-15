@@ -98,4 +98,4 @@ namespace recipe_7_11 {
 
     std::cout << dir_size(path) << std::endl;
   }
-} // namespace recipe_7_11
+}

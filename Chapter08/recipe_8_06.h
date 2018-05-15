@@ -38,4 +38,4 @@ namespace recipe_8_06 {
     t1.join();
     t2.join();
   }
-} // namespace recipe_8_06
+}

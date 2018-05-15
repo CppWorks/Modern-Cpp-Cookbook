@@ -57,4 +57,4 @@ namespace recipe_3_06 {
       auto s = c(vnums);
     }
   }
-} // namespace recipe_3_06
+}

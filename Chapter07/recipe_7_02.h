@@ -188,4 +188,4 @@ namespace recipe_7_02 {
     test2();
     test3();
   }
-} // namespace recipe_7_02
+}

@@ -147,4 +147,4 @@ namespace recipe_6_05 {
       process(b2); // copy construction
     }
   }
-} // namespace recipe_6_05
+}

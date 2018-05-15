@@ -57,4 +57,4 @@ namespace recipe_6_08 {
       // std::terminate();    // exit handlers are not invoked
     }
   }
-} // namespace recipe_6_08
+}

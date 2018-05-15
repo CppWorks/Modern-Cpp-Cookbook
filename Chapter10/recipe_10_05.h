@@ -27,7 +27,7 @@ namespace recipe_10_05 {
         auto d2 = c.data_1;
       }
     };
-  } // namespace oldversion
+  }
 
   class Client {
     int data_1;
@@ -121,4 +121,4 @@ namespace recipe_10_05 {
       f.run();
     }
   }
-} // namespace recipe_10_05
+}

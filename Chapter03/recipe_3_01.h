@@ -95,4 +95,4 @@ namespace recipe_3_01 {
       run(42L); // OK
     }
   }
-} // namespace recipe_3_01
+}

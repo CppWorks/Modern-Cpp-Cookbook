@@ -95,7 +95,7 @@ namespace recipe_8_10 {
                                std::forward<F>(op));
       }
     }
-  } // namespace version1
+  }
 
   namespace version2 {
     template <typename Iter, typename F>
@@ -134,7 +134,7 @@ namespace recipe_8_10 {
         return result1.get() + result2;
       }
     }
-  } // namespace version2
+  }
 
   void test_mapreduce_tasks()
   {
@@ -203,4 +203,4 @@ namespace recipe_8_10 {
   {
     test_mapreduce_tasks();
   }
-} // namespace recipe_8_10
+}

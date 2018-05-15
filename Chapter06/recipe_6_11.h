@@ -90,4 +90,4 @@ namespace recipe_6_11 {
       // auto v3 = GenerateRandom("1.0"s, "10.0"s, 10); // error
     }
   }
-} // namespace recipe_6_11
+}

@@ -152,4 +152,4 @@ namespace recipe_6_07 {
     */
     }
   }
-} // namespace recipe_6_07
+}

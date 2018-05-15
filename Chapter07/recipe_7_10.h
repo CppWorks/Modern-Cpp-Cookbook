@@ -94,4 +94,4 @@ namespace recipe_7_10 {
       std::cout << "symlink? " << fs::is_symlink(path, err) << std::endl;
     }
   }
-} // namespace recipe_7_10
+}

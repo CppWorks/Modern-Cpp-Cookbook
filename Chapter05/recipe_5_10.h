@@ -44,4 +44,4 @@ namespace recipe_5_10 {
     process(l, a);
     process(l, sa);
   }
-} // namespace recipe_5_10
+}

@@ -49,4 +49,4 @@ namespace recipe_7_12 {
       }
     }
   }
-} // namespace recipe_7_12
+}

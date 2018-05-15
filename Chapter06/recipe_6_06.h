@@ -98,4 +98,4 @@ namespace recipe_6_06 {
 #endif
     }
   }
-} // namespace recipe_6_06
+}

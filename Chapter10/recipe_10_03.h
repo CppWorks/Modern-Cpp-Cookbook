@@ -84,4 +84,4 @@ namespace recipe_10_03 {
       control c(control_properties(1044).visible(true).height(20).width(100));
     }
   }
-} // namespace recipe_10_03
+}

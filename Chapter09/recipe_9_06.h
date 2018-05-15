@@ -170,4 +170,4 @@ namespace recipe_9_06 {
       std::unique_ptr<Base> pb = std::move(pd);
     }
   }
-} // namespace recipe_9_06
+}

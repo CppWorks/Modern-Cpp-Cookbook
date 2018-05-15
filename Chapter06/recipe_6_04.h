@@ -131,4 +131,4 @@ namespace recipe_6_04 {
       // std::any value = f; // error
     }
   }
-} // namespace recipe_6_04
+}

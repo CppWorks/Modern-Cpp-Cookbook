@@ -411,4 +411,4 @@ namespace recipe_5_09 {
       lp(a);
     }
   }
-} // namespace recipe_5_09
+}

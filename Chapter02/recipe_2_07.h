@@ -14,8 +14,9 @@
 namespace recipe_2_07 {
   void execute()
   {
-    std::cout << "\nRecipe 2.07: Using raw string literals to avoid escaping characters."
-              << "\n--------------------------------------------------------------------\n";
+    std::cout
+      << "\nRecipe 2.07: Using raw string literals to avoid escaping characters."
+      << "\n--------------------------------------------------------------------\n";
 
     using namespace std::string_literals;
 
@@ -69,4 +70,4 @@ ORDER BY PubDate DESC)"s
       auto t8{ UR"(text)"s };  // u32string
     }
   }
-} // namespace recipe_2_05
+}

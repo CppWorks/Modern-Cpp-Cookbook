@@ -74,4 +74,4 @@ namespace recipe_7_06 {
 
     read_time();
   }
-} // namespace recipe_7_06
+}

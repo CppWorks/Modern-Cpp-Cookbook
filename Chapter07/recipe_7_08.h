@@ -133,4 +133,4 @@ namespace recipe_7_08 {
       assert(success);
     }
   }
-} // namespace recipe_7_08
+}

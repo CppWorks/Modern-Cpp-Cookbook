@@ -48,7 +48,7 @@ namespace recipe_6_10 {
         return v.serialize_with_encoding();
       }
     };
-  } // namespace details
+  }
 
   template <typename T>
   auto serialize(T& v)
@@ -73,4 +73,4 @@ namespace recipe_6_10 {
       std::cout << serialize(b) << std::endl;
     }
   }
-} // namespace recipe_6_10
+}

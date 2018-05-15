@@ -176,5 +176,4 @@ namespace recipe_1_01 {
   {
     return 2 * i;
   }
-
-} // namespace recipe_1_01
+}

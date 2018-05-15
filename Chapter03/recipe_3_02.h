@@ -106,4 +106,4 @@ namespace recipe_3_02 {
       std::cout << "text: " << text << std::endl;
     }
   }
-} // namespace recipe_3_02
+}

@@ -35,7 +35,7 @@ namespace recipe_6_03 {
       return id < other.id && name < other.name && value < other.value;
     }
   };
-} // namespace recipe_6_03
+}
 
 namespace std {
   template <>
@@ -53,7 +53,7 @@ namespace std {
       return hashValue;
     }
   };
-} // namespace std
+}
 
 namespace recipe_6_03 {
   void execute()
@@ -70,4 +70,4 @@ namespace recipe_6_03 {
       { 3, "three"s, 3.0 },
     };
   }
-} // namespace recipe_6_03
+}

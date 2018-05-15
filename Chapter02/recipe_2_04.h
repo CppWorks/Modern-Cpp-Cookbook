@@ -61,4 +61,4 @@ namespace recipe_2_04 {
 
     monte_carlo_simulation();
   }
-} // namespace recipe_2_04
+}

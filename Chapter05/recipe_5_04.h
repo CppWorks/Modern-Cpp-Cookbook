@@ -157,4 +157,4 @@ namespace recipe_5_04 {
                 << " and " << std::distance(v.cbegin(), bounds.second) << std::endl;
     }
   }
-} // namespace recipe_5_04
+}

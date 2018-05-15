@@ -76,4 +76,4 @@ namespace recipe_8_07 {
       std::cout << value << std::endl;
     }
   }
-} // namespace recipe_8_07
+}

@@ -44,5 +44,4 @@ namespace recipe_3_03 {
       auto text = std::accumulate(std::begin(texts), std::end(texts), ""s, lsum);
     }
   }
-
-} // namespace recipe_3_03
+}

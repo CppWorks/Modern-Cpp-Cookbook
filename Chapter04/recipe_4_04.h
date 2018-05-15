@@ -130,4 +130,4 @@ namespace recipe_4_04 {
       auto v2 = compute2(1.0, 2.0); // v2 = 3.0
     }
   }
-} // namespace recipe_4_04
+}

@@ -157,4 +157,4 @@ namespace recipe_5_02 {
       std::cout << std::dec;
     }
   }
-} // namespace recipe_5_02
+}

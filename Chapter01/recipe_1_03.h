@@ -232,4 +232,4 @@ namespace recipe_1_03 {
       // auto d{4, 2};
     }
   }
-} // namespace recipe_1_03
+}

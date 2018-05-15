@@ -54,4 +54,4 @@ namespace recipe_10_07 {
       s.demo();
     }
   }
-} // namespace recipe_10_07
+}

@@ -43,4 +43,4 @@ namespace recipe_1_06 {
     // int c2 = Codes::Failure;                   // error
     int c3 = static_cast<int>(Codes::Failure); // OK
   }
-} // namespace recipe_1_06
+}

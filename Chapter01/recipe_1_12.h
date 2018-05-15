@@ -15,19 +15,19 @@
 
 #include <iostream>
 
-    // To provide multiple versions of a library and let the user decide what version to
-    // use, do the following:
+// To provide multiple versions of a library and let the user decide what version to
+// use, do the following:
 
-    // 1. Define the content of the library inside a namespace.
-    // 2. Define each version of the library or parts of it inside an inner inline
-    // namespace.
-    // 3. Use preprocessor macros and #if directives to enable a particular version of the
-    // library.
+// 1. Define the content of the library inside a namespace.
+// 2. Define each version of the library or parts of it inside an inner inline
+// namespace.
+// 3. Use preprocessor macros and #if directives to enable a particular version of the
+// library.
 
-    namespace recipe_1_12 {
+namespace recipe_1_12 {
   // 1.
   namespace modernlib {
-    // 3.
+  // 3.
 #ifndef LIB_VERSION_2
     // 2.
     inline namespace version_1 {
@@ -36,10 +36,10 @@
       {
         return 1;
       }
-    } // namespace version_1
+    }
 #endif
 
-    // 3.
+      // 3.
 #ifdef LIB_VERSION_2
     // 2.
     inline namespace version_2 {
@@ -48,7 +48,7 @@
       {
         return 2;
       }
-    } // namespace version_2
+    }
 #endif
   }
 
@@ -56,8 +56,7 @@
     struct foo {
       int a;
     };
-
-  } // namespace client
+  }
 
   // The client sees just namespace modernlib, does not know of the inlined namespaces.
   // Client code does not break with more versions of the same library.
@@ -68,7 +67,7 @@
     {
       return value.a;
     }
-  } // namespace modernlib
+  }
 
   namespace client {
     void execute()
@@ -78,5 +77,5 @@
 
       auto y = modernlib::test(foo{ 42 });
     }
-  } // namespace client
-} // namespace recipe_1_12
+  }
+}

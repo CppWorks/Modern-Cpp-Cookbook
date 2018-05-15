@@ -77,4 +77,4 @@ bool is_fibonacci(T v1, T v2, T v3, Ts... args)
       auto a = 0;
     }
   }
-} // namespace recipe_3_07
+}

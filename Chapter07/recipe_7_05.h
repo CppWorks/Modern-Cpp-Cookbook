@@ -121,4 +121,4 @@ namespace recipe_7_05 {
     write_money();
     read_money();
   }
-} // namespace recipe_7_05
+}

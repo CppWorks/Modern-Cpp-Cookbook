@@ -67,4 +67,4 @@ namespace funclib {
   {
     return [=](auto x) { return f(compose(r...)(x)); };
   }
-} // namespace funclib
+}

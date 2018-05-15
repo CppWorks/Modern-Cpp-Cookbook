@@ -112,4 +112,4 @@ namespace recipe_10_02 {
   {
     pimpl->hide();
   }
-} // namespace recipe_10_02
+}

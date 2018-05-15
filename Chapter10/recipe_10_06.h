@@ -27,7 +27,7 @@ namespace recipe_10_06 {
     {
       b.func1();
     }
-  } // namespace demo1
+  }
 
   namespace demo2 {
     template <class T>
@@ -95,7 +95,7 @@ namespace recipe_10_06 {
         std::cout << "painting transparent button background..." << std::endl;
       }
     };
-  } // namespace demo2
+  }
 
   namespace demo3 {
     class controlbase {
@@ -151,7 +151,7 @@ namespace recipe_10_06 {
         c->draw();
       }
     }
-  } // namespace demo3
+  }
 
   void execute()
   {
@@ -192,4 +192,4 @@ namespace recipe_10_06 {
       draw_controls(v);
     }
   }
-} // namespace recipe_10_06
+}

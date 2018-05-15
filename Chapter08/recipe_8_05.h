@@ -91,4 +91,4 @@ namespace recipe_8_05 {
 
     std::cout << "done producing and consuming" << std::endl;
   }
-} // namespace recipe_8_05
+}

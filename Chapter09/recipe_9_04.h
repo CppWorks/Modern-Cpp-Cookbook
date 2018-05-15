@@ -59,4 +59,4 @@ namespace recipe_9_04 {
       static constexpr int const& r = c;
     }
   }
-} // namespace recipe_9_04
+}

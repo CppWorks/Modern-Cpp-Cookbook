@@ -28,11 +28,11 @@ namespace {
   {
     std::cout << "[file1] " << message << std::endl;
   }
-} // namespace
+}
 
 namespace recipe_1_11 {
   void file1_run()
   {
     print("run"s);
   }
-} // namespace recipe_1_11
+}

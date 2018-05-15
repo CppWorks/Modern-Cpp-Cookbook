@@ -132,4 +132,4 @@ namespace recipe_8_08 {
     test_fetch_arithmetic();
     test_counter();
   }
-} // namespace recipe_8_08
+}

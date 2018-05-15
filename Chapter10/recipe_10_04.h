@@ -104,4 +104,4 @@ namespace recipe_10_04 {
       b.draw();
     }
   }
-} // namespace recipe_10_04
+}

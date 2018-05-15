@@ -75,4 +75,4 @@ namespace recipe_6_02 {
       print_clock<std::chrono::steady_clock>();
     }
   }
-} // namespace recipe_6_02
+}

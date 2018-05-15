@@ -5,7 +5,8 @@
 
 // 1. Use an std::tuple for the return type.
 // 2. Use structured bindings to unpack the values of the tuple into named objects.
-// 3. Use decomposition declaration to bind the returned values to variables inside an 'if'
+// 3. Use decomposition declaration to bind the returned values to variables inside an
+// 'if'
 //    statement or 'switch' statement.
 
 namespace recipe_1_13 {
@@ -69,7 +70,8 @@ namespace recipe_1_13 {
       std::cout << "\n------------------------------\n";
       std::map<int, std::string> m;
 
-      // 2. Use decomposition declaration to bind the returned values to variables inside an
+      // 2. Use decomposition declaration to bind the returned values to variables inside
+      // an
       //    if statement or switch statement.
       if (auto[it, inserted] = m.insert({ 1, "two" }); inserted) {
         std::cout << it->second << std::endl;
@@ -106,4 +108,4 @@ namespace recipe_1_13 {
     }
 #endif
   }
-} // namespace recipe_1_13
+}

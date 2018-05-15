@@ -55,7 +55,7 @@ namespace recipe_2_08 {
         auto last{ text.find_last_not_of(' ') };
         text = text.substr(0, last + 1);
       }
-    } // namespace mutable_version
+    }
 
     // ----------
 
@@ -148,7 +148,7 @@ namespace recipe_2_08 {
 
       return tokens;
     }
-  } // namespace string_library
+  }
 
   void execute()
   {

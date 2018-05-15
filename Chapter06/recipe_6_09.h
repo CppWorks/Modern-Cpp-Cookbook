@@ -64,4 +64,4 @@ namespace recipe_6_09 {
       auto v4 = process("42"s); // "42"
     }
   }
-} // namespace recipe_6_09
+}

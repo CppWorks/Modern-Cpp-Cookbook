@@ -125,4 +125,4 @@ namespace recipe_9_03 {
   *x = 0;              // oops, this modifies c
   */
   }
-} // namespace recipe_9_03
+}

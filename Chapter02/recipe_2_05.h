@@ -23,7 +23,7 @@ namespace recipe_2_05 {
     {
       return static_cast<size_t>(size * 1024);
     }
-  } // namespace compunits
+  }
 
   void examples_kb()
   {
@@ -111,8 +111,8 @@ namespace recipe_2_05 {
       {
         return quantity<unit::piece>{ static_cast<double>(amount) };
       }
-    } // namespace unit_literals
-  }   // namespace units
+    }
+  }
 
   void example_units()
   {

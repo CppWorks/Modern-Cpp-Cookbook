@@ -145,4 +145,4 @@ namespace recipe_8_09 {
   {
     test_mapreduce_threads();
   }
-} // namespace recipe_8_09
+}

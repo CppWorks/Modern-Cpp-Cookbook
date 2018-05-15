@@ -114,4 +114,4 @@ namespace recipe_9_08 {
       b3 = std::move(b4);       // move assignment
     }
   }
-} // namespace recipe_9_08
+}

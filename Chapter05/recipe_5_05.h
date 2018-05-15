@@ -99,4 +99,4 @@ namespace recipe_5_05 {
       auto length = std::distance(v.cbegin(), it);
     }
   }
-} // namespace recipe_5_05
+}

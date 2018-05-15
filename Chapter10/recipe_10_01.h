@@ -98,4 +98,4 @@ namespace recipe_10_01 {
       auto movie = factory.Create(typeid(PngImage));
     }
   }
-} // namespace recipe_10_01
+}

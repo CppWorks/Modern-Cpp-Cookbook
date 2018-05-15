@@ -182,4 +182,4 @@ namespace recipe_7_04 {
       std::cout << std::fixed << std::setprecision(2) << 12.345 << std::endl; // 12.35
     }
   }
-} // namespace recipe_7_04
+}

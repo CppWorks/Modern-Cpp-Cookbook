@@ -28,7 +28,7 @@ namespace recipe_2_06 {
         struct binary_struct<CharT> {
           static constexpr CharT value{ 0 };
         };
-      } // namespace binary_literals_internals
+      }
 
       template <char... bits>
       constexpr byte8 operator""_b8()
@@ -56,9 +56,8 @@ namespace recipe_2_06 {
 
         return binary_literals_internals::binary_struct<byte32, bits...>::value;
       }
-
-    } // namespace binary_literals
-  }   // namespace binary
+    }
+  }
 
   void execute()
   {

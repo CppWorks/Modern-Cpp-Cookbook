@@ -98,4 +98,4 @@ namespace recipe_5_01 {
       std::vector<int>().swap(v);
     }
   }
-} // namespace recipe_5_01
+}

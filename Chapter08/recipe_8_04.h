@@ -58,4 +58,4 @@ namespace recipe_8_04 {
   };
 
   void execute() {}
-} // namespace recipe_8_04
+}

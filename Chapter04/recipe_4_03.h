@@ -36,4 +36,4 @@ namespace recipe_4_03 {
     auto v1 = mul(1, 2); // OK
                          // auto v2 = mul(12.0, 42.5); // error: Integral type expected
   }
-} // namespace recipe_4_03
+}
