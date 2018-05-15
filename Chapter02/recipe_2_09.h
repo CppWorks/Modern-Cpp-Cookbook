@@ -46,8 +46,8 @@ namespace recipe_2_09 {
 
   void execute()
   {
-    std::cout << "\nRecipe 2.09: ."
-              << "\n----------------------------------------------\n";
+    std::cout << "\nRecipe 2.09: Verifying the format of a string using regular expressions."
+              << "\n------------------------------------------------------------------------\n";
 
     auto ltest = [](std::string const& email) {
       std::cout << std::setw(30) << std::left << email << " : "
@@ -95,4 +95,4 @@ namespace recipe_2_09 {
     ltest3("ROOT@LOCALHOST"s);
     ltest3("john.doe@domain.com"s);
   }
-} // namespace recipe_2_09
+}

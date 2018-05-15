@@ -14,7 +14,6 @@ namespace recipe_2_08 {
     template <typename CharT>
     using tstringstream
       = std::basic_stringstream<CharT, std::char_traits<CharT>, std::allocator<CharT>>;
-    // --------
 
     namespace mutable_version {
       template <typename CharT>
@@ -153,8 +152,8 @@ namespace recipe_2_08 {
 
   void execute()
   {
-    std::cout << "\nRecipe 2.08: ."
-              << "\n----------------------------------------------\n";
+    std::cout << "\nRecipe 2.08: Creating a library of string helpers."
+              << "\n--------------------------------------------------\n";
 
     using namespace std::string_literals;
 
@@ -196,4 +195,4 @@ namespace recipe_2_08 {
     auto tokens2{ string_library::split(""s, ' ') };
     // tokens2 = {}
   }
-} // namespace recipe_2_08
+}

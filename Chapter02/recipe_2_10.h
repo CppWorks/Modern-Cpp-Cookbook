@@ -9,8 +9,8 @@ namespace recipe_2_10 {
 
   void execute()
   {
-    std::cout << "\nRecipe 2.10: ."
-              << "\n----------------------------------------------\n";
+    std::cout << "\nRecipe 2.10: Parsing the content of a string using regular expressions."
+              << "\n-----------------------------------------------------------------------\n";
 
     auto text{
       R"(
@@ -65,4 +65,4 @@ server = 127.0.0.1
       }
     }
   }
-} // namespace recipe_2_10
+}

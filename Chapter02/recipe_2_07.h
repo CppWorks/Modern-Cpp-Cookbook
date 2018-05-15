@@ -1,87 +1,72 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+
+// C++ defines a series of prefixes and suffixes to specify literals.
+// C++11 allows creating user-defined literals by defining functions called literal
+// operators that introduce suffixes for specifying literals.
+
+// User-defined literals can have two forms: raw and cooked. Raw literals are not
+// processed by the compiler, whereas cooked literals are values processed by the
+// compiler.
 
 namespace recipe_2_07 {
-  namespace binary {
-    using byte8 = unsigned char;
-    using byte16 = unsigned short;
-    using byte32 = unsigned int;
-
-    namespace binary_literals {
-      namespace binary_literals_internals {
-        template <typename CharT, char... bits>
-        struct binary_struct;
-
-        template <typename CharT, char... bits>
-        struct binary_struct<CharT, '0', bits...> {
-          static constexpr CharT value{ binary_struct<CharT, bits...>::value };
-        };
-
-        template <typename CharT, char... bits>
-        struct binary_struct<CharT, '1', bits...> {
-          static constexpr CharT value{ static_cast<CharT>(1 << sizeof...(bits))
-                                        | binary_struct<CharT, bits...>::value };
-        };
-
-        template <typename CharT>
-        struct binary_struct<CharT> {
-          static constexpr CharT value{ 0 };
-        };
-      } // namespace binary_literals_internals
-
-      template <char... bits>
-      constexpr byte8 operator""_b8()
-      {
-        static_assert(sizeof...(bits) <= 8,
-                      "binary literal b8 must be up to 8 digits long");
-
-        return binary_literals_internals::binary_struct<byte8, bits...>::value;
-      }
-
-      template <char... bits>
-      constexpr byte16 operator""_b16()
-      {
-        static_assert(sizeof...(bits) <= 16,
-                      "binary literal b16 must be up to 16 digits long");
-
-        return binary_literals_internals::binary_struct<byte16, bits...>::value;
-      }
-
-      template <char... bits>
-      constexpr byte32 operator""_b32()
-      {
-        static_assert(sizeof...(bits) <= 32,
-                      "binary literal b32 must be up to 32 digits long");
-
-        return binary_literals_internals::binary_struct<byte32, bits...>::value;
-      }
-
-    } // namespace binary_literals
-  }   // namespace binary
-
   void execute()
   {
-    std::cout << "\nRecipe 2.07: ."
-              << "\n----------------------------------------------\n";
+    std::cout << "\nRecipe 2.07: Using raw string literals to avoid escaping characters."
+              << "\n--------------------------------------------------------------------\n";
 
-    using namespace binary;
-    using namespace binary_literals;
+    using namespace std::string_literals;
 
-    using namespace binary;
-    using namespace binary_literals;
+    {
+      auto filename{ "C:\\Users\\Marius\\Documents\\"s };
 
-    auto b1 = 1010_b8;
-    auto b2 = 101010101010_b16;
-    auto b3 = 010101010101010101010101_b32;
+      auto pattern{ "(\\w+)=(\\d+)$"s };
 
-    // binary literal b8 must be up to 8 digits long
-    // auto b4 = 0011111111_b8;
+      auto sqlselect{ "SELECT *\n\
+FROM Books\n\
+WHERE Publisher=\'Paktpub\'\n\
+ORDER BY PubDate DESC"s };
+    }
 
-    // binary literal b16 must be up to 16 digits long
-    // auto b5 = 001111111111111111_b16;
+    {
+      auto filename{ R"(C:\Users\Marius\Documents\)"s };
 
-    // binary literal b32 must be up to 32 digits long
-    // auto b6 = 0011111111111111111111111111111111_b32;
+      auto pattern{ R"((\w+)=(\d+)$)"s };
+
+      auto sqlselect{
+        R"(SELECT *
+FROM Books
+WHERE Publisher='Paktpub'
+ORDER BY PubDate DESC)"s
+      };
+    }
+
+    {
+      auto filename1{ R"(C:\Users\Marius\Documents\)"s };
+      auto filename2{ R"(C:\\Users\\Marius\\Documents\\)"s };
+
+      // prints C:\Users\Marius\Documents\
+         std::cout << filename1 << std::endl;
+
+      // prints C:\\Users\\Marius\\Documents\\
+         std::cout << filename2 << std::endl;
+
+      auto text{ R"!!(This text contains both "( and )".)!!"s };
+      std::cout << text << std::endl;
+    }
+
+    {
+      auto t1{ LR"(text)" };  // const wchar_t*
+      auto t2{ u8R"(text)" }; // const char*
+      auto t3{ uR"(text)" };  // const char16_t*
+      auto t4{ UR"(text)" };  // const char32_t*
+
+      auto t5{ LR"(text)"s };  // wstring
+      auto t6{ u8R"(text)"s }; // string
+      auto t7{ uR"(text)"s };  // u16string
+      auto t8{ UR"(text)"s };  // u32string
+    }
   }
-} // namespace recipe_2_07
+} // namespace recipe_2_05

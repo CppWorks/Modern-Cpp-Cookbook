@@ -9,8 +9,8 @@ namespace recipe_2_11 {
 
   void execute()
   {
-    std::cout << "\nRecipe 2.11: ."
-              << "\n----------------------------------------------\n";
+    std::cout << "\nRecipe 2.11: Replacing the content of a string using regular expressions."
+              << "\n-------------------------------------------------------------------------\n";
 
     {
       auto text{ "abc aa bca ca bbbb"s };
@@ -55,4 +55,4 @@ namespace recipe_2_11 {
       std::cout << newtext2 << std::endl;
     }
   }
-} // namespace recipe_2_11
+}

@@ -30,8 +30,8 @@ namespace recipe_2_12 {
 
   void execute()
   {
-    std::cout << "\nRecipe 2.12: ."
-              << "\n----------------------------------------------\n";
+    std::cout << "\nRecipe 2.12: Using string_view instead of constant string references."
+              << "\n---------------------------------------------------------------------\n";
 
     {
       auto name1 = get_filename(R"(c:\test\example1.doc)"); // example1

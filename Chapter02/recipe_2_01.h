@@ -10,12 +10,16 @@ namespace recipe_2_01 {
     std::cout << "Recipe 2.01: Converting between numeric and string types.\n"
               << "---------------------------------------------------------\n";
 
+    // To convert from an integer or floating point type to a string type, use
+    // std::to_string() or std::to_wstring()
     auto si = std::to_string(42);     // si="42"
     auto sl = std::to_string(42l);    // sl="42"
     auto su = std::to_string(42u);    // su="42"
     auto sd = std::to_string(42.0);   // sd="42.000000"
     auto sld = std::to_string(42.0l); // sld="42.000000"
 
+    // To convert from a string type to an integer type, use std::stoi(), std::stol(),
+    // std::stoll(), std::stoul(), or std::stoull()
     auto i1 = std::stoi("42");
     auto i2 = std::stoi("   42");
     auto i3 = std::stoi("   42fortytwo");
@@ -35,21 +39,27 @@ namespace recipe_2_01 {
     auto i14 = std::stoi("-42", &pos);      // pos = 3
     auto i15 = std::stoi("  +42dec", &pos); // pos = 5
 
+    // An important thing to note is that these conversion functions throw if the
+    // conversion fails.
+    // If the conversion cannot be performed: std::invalid_argument
     try {
       auto i16 = std::stoi("");
     } catch (std::exception const& e) {
-      // prints "invalid stoi argument"
-      std::cout << e.what() << std::endl;
+      // prints "stoi"
+      std::cout << "Error: " << e.what() << std::endl;
     }
 
+    // If the converted value is outside the range of the result type: std::out_of_range
     try {
       auto i17 = std::stoll("12345678901234"); // OK
       auto i18 = std::stoi("12345678901234");  // throws std::out_of_range
     } catch (std::exception const& e) {
-      // prints stoi argument out of range
-      std::cout << e.what() << std::endl;
+      // prints "stoi"
+      std::cout << "Error: " << e.what() << std::endl;
     }
 
+    // To convert from a string type to a floating point type, use std::stof(),
+    // std::stod(), or std::stold(),
     auto d1 = std::stod("123.45");       // d1 =  123.45000000000000
     auto d2 = std::stod("+123.45");      // d2 =  123.45000000000000
     auto d3 = std::stod("-123.45");      // d3 = -123.45000000000000
@@ -59,8 +69,10 @@ namespace recipe_2_01 {
     auto d7 = std::stod("0xF.6E6666p3"); // d7 =  123.44999980926514
 
     auto d8 = std::stod("INF");       // d8 = inf
+    std::cout << "d8: " << d8 << std::endl;
     auto d9 = std::stod("-infinity"); // d9 = -inf
     auto d10 = std::stod("NAN");      // d10 = nan
+    std::cout << "d10: " << d10 << std::endl;
     auto d11 = std::stod("-nanabc");  // d11 = -nan
   }
 } // namespace recipe_2_01
