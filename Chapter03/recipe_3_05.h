@@ -9,6 +9,7 @@
 #include <queue>
 #include <string>
 #include <vector>
+#include <cmath>
 
 namespace recipe_3_05 {
   using namespace std::string_literals;

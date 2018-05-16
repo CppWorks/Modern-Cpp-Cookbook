@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <queue>
+#include <numeric>
 
 namespace funclib {
   template <typename F, typename R>
