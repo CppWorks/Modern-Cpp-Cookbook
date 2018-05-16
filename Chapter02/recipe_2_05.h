@@ -134,6 +134,8 @@ namespace recipe_2_05 {
     std::cout << "\nRecipe 2.05: Creating cooked user-defined literals."
               << "\n---------------------------------------------------\n";
 
+    std::cout << "Please check the source code.\n";
+    
     {
       // without prefixes/suffixes
       auto b{ true };    // boolean

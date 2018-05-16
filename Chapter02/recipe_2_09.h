@@ -1,9 +1,30 @@
 #pragma once
 
+// C++11 provides support for regular expressions within the standard library through a
+// set of classes, algorithms, and iterators available in the header <regex>.
+
 #include <iomanip>
 #include <iostream>
 #include <regex>
 #include <string>
+
+// In order to verify that a string matches a regular expression, perform the following
+// steps:
+
+// 1. Include headers <regex> and <string> and the namespace std::string_literals for
+// C++14 standard user-defined literals for strings.
+
+// 2. Use raw string literals to specify the regular expression to avoid escaping
+// backslashes (that can occur frequently).
+
+// 3. Create an std::regex/std::wregex object (depending on the character set that is
+// used) to encapsulate the regular expression.
+
+// 4. To ignore casing or specify other parsing options, use an overloaded constructor
+// that has an extra parameter for regular expression flags, e.g.
+// std::regex_constants::icase
+
+// 5. Use std::regex_match() to match the regular expression to an entire string.
 
 namespace recipe_2_09 {
   using namespace std::string_literals;
@@ -21,6 +42,7 @@ namespace recipe_2_09 {
 
   bool is_valid_email_format(std::string const& email)
   {
+    // This regular expression does not cover all possible e-mail formats.
     auto rx = std::regex{ R"(^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$)"s,
                           std::regex_constants::icase };
     return std::regex_match(email, rx);
@@ -61,13 +83,13 @@ namespace recipe_2_09 {
     };
 
     auto ltest3 = [](std::string const& email) {
-      auto valid{ false };
-      auto localpart = std::string{};
-      auto hostname = std::string{};
-      auto dnslabel = std::string{};
+      // auto valid{ false };
+      // auto localpart = std::string{};
+      // auto hostname = std::string{};
+      // auto dnslabel = std::string{};
+      // std::tie(valid, localpart, hostname, dnslabel)
 
-      std::tie(valid, localpart, hostname, dnslabel)
-        = is_valid_email_format_with_result(email);
+      auto [valid, localpart, hostname, dnslabel] = is_valid_email_format_with_result(email);
 
       std::cout << std::setw(30) << std::left << email << " : " << std::setw(10)
                 << (valid ? "valid" : "invalid") << std::endl
@@ -75,6 +97,7 @@ namespace recipe_2_09 {
                 << ";dns=" << dnslabel << std::endl;
     };
 
+    std::cout << "Just check whether this is a valid email address:\n";
     ltest("JOHN.DOE@DOMAIN.COM"s);
     ltest("JOHNDOE@DOMAIL.CO.UK"s);
     ltest("JOHNDOE@DOMAIL.INFO"s);
@@ -82,6 +105,7 @@ namespace recipe_2_09 {
     ltest("ROOT@LOCALHOST"s);
     ltest("john.doe@domain.com"s);
 
+    std::cout << "\nCheck wide strings:\n";
     ltest2(L"JOHN.DOE@DOMAIN.COM"s);
     ltest2(L"JOHNDOE@DOMAIL.CO.UK"s);
     ltest2(L"JOHNDOE@DOMAIL.INFO"s);
@@ -89,6 +113,7 @@ namespace recipe_2_09 {
     ltest2(L"ROOT@LOCALHOST"s);
     ltest2(L"john.doe@domain.com"s);
 
+    std::cout << "\nWe want also the parts:\n";
     ltest3("JOHN.DOE@DOMAIN.COM"s);
     ltest3("JOHNDOE@DOMAIL.CO.UK"s);
     ltest3("JOHNDOE@DOMAIL.INFO"s);
