@@ -1,70 +1,60 @@
 #pragma once
 
-#include <iostream>
+#include "funclib.h"
+// #include "recipe_3_05.h"
+#include <string>
 
-namespace recipe_3_08 {
-
-// only works with Clang 3.9
-
-#ifdef __clang__
-  template <typename... Ts>
-  auto add(Ts... args)
+namespace recipe_3_06 {
+  template <typename F, typename G>
+  auto operator*(F&& f, G&& g)
   {
-    return (... + args);
+    return funclib::compose(std::forward<F>(f), std::forward<G>(g));
   }
 
-  template <typename... Ts>
-  auto addr(Ts... args)
+  template <typename F, typename... R>
+  auto operator*(F&& f, R&&... r)
   {
-    return (args + ...);
+    return funclib::operator*(std::forward<F>(f), r...);
   }
-
-  template <typename... Ts>
-  auto all_of(Ts... args)
-  {
-    return (... && args);
-  }
-
-  template <typename... Ts>
-  auto any_of(Ts... args)
-  {
-    return (... || args);
-  }
-
-  template <typename T>
-  struct wrapper_min {
-    T const& value;
-  };
-
-  template <typename T>
-  constexpr auto operator<(wrapper_min<T> const& lhs, wrapper_min<T> const& rhs)
-  {
-    return wrapper_min<T>{ lhs.value < rhs.value ? lhs.value : rhs.value };
-  }
-
-  template <typename... Ts>
-  constexpr auto min(Ts&&... args)
-  {
-    return (wrapper_min<Ts>{ args } < ...).value;
-  }
-#endif
 
   void execute()
   {
-#ifdef __clang__
-    std::cout << min(10, 2, 3, 4, 5) << std::endl;
+    using namespace funclib;
 
-    std::cout << add() << std::endl;
-    std::cout << add(1, 2, 3, 4, 5) << std::endl;
-    std::cout << addr(1, 2, 3, 4, 5) << std::endl;
+    auto vnums = std::vector<int>{ 0, 2, -3, 5, -1, 6, 8, -4, 9 };
 
-    std::cout << all_of(true, true, true) << std::endl;
-    std::cout << all_of(false, false, false) << std::endl;
-    std::cout << all_of(true, false, true) << std::endl;
+    {
+      auto v = compose([](int const n) { return std::to_string(n); },
+                       [](int const n) { return n * n; })(-3);
 
-    std::cout << any_of(true, true, true) << std::endl;
-    std::cout << any_of(false, false, false) << std::endl;
-    std::cout << any_of(true, false, true) << std::endl;
-#endif
+      auto n = compose(
+        [](int const n) { return std::to_string(n); }, [](int const n) { return n * n; },
+        [](int const n) { return n + n; }, [](int const n) { return std::abs(n); })(-3);
+
+      auto s
+        = compose([](std::vector<int> const& v) { return foldl(std::plus<>(), v, 0); },
+                  [](std::vector<int> const& v) {
+                    return mapf([](int const i) { return i + i; }, v);
+                  },
+                  [](std::vector<int> const& v) {
+                    return mapf([](int const i) { return std::abs(i); }, v);
+                  })(vnums);
+    }
+
+    {
+      auto n = ([](int const n) { return std::to_string(n); } *
+                [](int const n) { return n * n; } * [](int const n) { return n + n; } *
+                [](int const n) { return std::abs(n); })(-3);
+
+      auto c = [](std::vector<int> const& v) { return foldl(std::plus<>(), v, 0); } *
+        [](std::vector<int> const& v) {
+          return mapf([](int const i) { return i + i; }, v);
+        }
+        * [](std::vector<int> const& v) {
+            return mapf([](int const i) { return std::abs(i); }, v);
+          };
+
+      auto s = c(vnums);
+    }
   }
 }

@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
-namespace recipe_3_07 {
+namespace recipe_3_07_1 {
   template <typename T>
   T sum(T value)
   {
@@ -32,18 +33,6 @@ namespace recipe_3_07 {
   {
     return v1 + v2 == v3;
   }
-  /*
-template <typename T>
-bool is_fibonacci(T v1, T v2, T v3)
-{
-   return v1 + v2 == v3;
-}
-
-template <typename T, typename... Ts>
-bool is_fibonacci(T v1, T v2, T v3, Ts... args)
-{
-   return v1 + v2 == v3 && is_fibonacci(args...);
-}*/
 
   template <typename T>
   bool is_any(T value, T elem)
@@ -59,7 +48,10 @@ bool is_fibonacci(T v1, T v2, T v3, Ts... args)
 
   void execute()
   {
-    using namespace std::string_literals;
+    std::cout << "\nRecipe 3.07.1: Implementing higher-order functions map and fold."
+              << "\n----------------------------------------------------------------\n";
+
+   using namespace std::string_literals;
 
     {
       auto n = sum(1, 2, 3, 4, 5);

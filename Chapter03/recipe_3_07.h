@@ -25,8 +25,8 @@ namespace recipe_3_07 {
 
   void execute()
   {
-    std::cout << "\nRecipe 3.07: ."
-              << "\n----------------------------------------------------------\n";
+    std::cout << "\nRecipe 3.07: Implementing higher-order functions map and fold."
+              << "\n--------------------------------------------------------------\n";
 
     {
       auto vnums = std::vector<int>{ 0, 2, -3, 5, -1, 6, 8, -4, 9 };
