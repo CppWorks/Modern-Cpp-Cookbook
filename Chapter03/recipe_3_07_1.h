@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace recipe_3_07_1 {
   template <typename T>
@@ -51,7 +51,7 @@ namespace recipe_3_07_1 {
     std::cout << "\nRecipe 3.07.1: Implementing higher-order functions map and fold."
               << "\n----------------------------------------------------------------\n";
 
-   using namespace std::string_literals;
+    using namespace std::string_literals;
 
     {
       auto n = sum(1, 2, 3, 4, 5);

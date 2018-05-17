@@ -23,7 +23,7 @@ namespace recipe_3_09 {
     template <class F, class T, std::size_t... I>
     auto apply(F&& f, T&& t, std::index_sequence<I...>)
     {
-      return std::invoke(std::forward<F>(f), std::get<I>(std::forward<T>(t))...);
+      return std::__invoke(std::forward<F>(f), std::get<I>(std::forward<T>(t))...);
     }
   }
 
@@ -37,6 +37,9 @@ namespace recipe_3_09 {
 
   void execute()
   {
+    std::cout << "\nRecipe 3.09: Uniformly invoking anything callable."
+              << "\n--------------------------------------------------\n";
+
     {
       auto a1 = add(1, 2); // a1 = 3
 
@@ -62,31 +65,31 @@ namespace recipe_3_09 {
     }
 
     {
-      auto a1 = std::invoke(add, 1, 2); // a1 = 3
+      auto a1 = std::__invoke(add, 1, 2); // a1 = 3
 
-      auto a2 = std::invoke(&add, 1, 2); // a2 = 3
+      auto a2 = std::__invoke(&add, 1, 2); // a2 = 3
 
       int (*fadd)(int const, int const) = &add;
 
-      auto a3 = std::invoke(fadd, 1, 2); // a3 = 3
+      auto a3 = std::__invoke(fadd, 1, 2); // a3 = 3
     }
 
     {
       foo f;
-      auto x1 = std::invoke(&foo::x, f); // x1 = 0
+      auto x1 = std::__invoke(&foo::x, f); // x1 = 0
 
-      std::invoke(&foo::increment_by, f, 10);
-      auto x2 = std::invoke(&foo::x, f); // x2 = 10
+      std::__invoke(&foo::increment_by, f, 10);
+      auto x2 = std::__invoke(&foo::x, f); // x2 = 10
 
-      auto x3 = std::invoke(std::plus<>(), std::invoke(&foo::x, f), 3); // x3 = 13
+      auto x3 = std::__invoke(std::plus<>(), std::__invoke(&foo::x, f), 3); // x3 = 13
 
-      auto x4 = std::invoke(&foo::x, f); // x4 = 10
+      auto x4 = std::__invoke(&foo::x, f); // x4 = 10
     }
 
     {
       auto l = [](auto a, auto b) { return a + b; };
 
-      auto a = std::invoke(l, 1, 2); // a = 3
+      auto a = std::__invoke(l, 1, 2); // a = 3
     }
 
     {

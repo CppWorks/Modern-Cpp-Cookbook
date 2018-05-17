@@ -57,29 +57,24 @@ namespace recipe_3_06 {
   }
 
   // Fold expressions work with all overloads for the supported binary operators, but do
-  // not work with arbitrary binary functions. It is possible to implement a workaround for
-  // that by providing a wrapper type to hold a value and an overloaded operator for
+  // not work with arbitrary binary functions. It is possible to implement a workaround
+  // for that by providing a wrapper type to hold a value and an overloaded operator for
   // that wrapper type.
 
-
   template <typename T>
-  struct wrapper
-  {
-    T const & value;
+  struct wrapper {
+    T const& value;
   };
   template <typename T>
-  constexpr auto operator<(wrapper<T> const & lhs,
-                           wrapper<T> const & rhs)
+  constexpr auto operator<(wrapper<T> const& lhs, wrapper<T> const& rhs)
   {
-    return wrapper<T> {
-      lhs.value < rhs.value ? lhs.value : rhs.value};
+    return wrapper<T>{ lhs.value < rhs.value ? lhs.value : rhs.value };
   }
   template <typename... Ts>
   constexpr auto min(Ts&&... args)
   {
-    return (wrapper<Ts>{args} < ...).value;
+    return (wrapper<Ts>{ args } < ...).value;
   }
-
 
   void execute()
   {
