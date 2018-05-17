@@ -23,7 +23,8 @@ namespace recipe_3_04 {
 
   // 2. Assign the lambda to an std::function wrapper.
 
-  // 3. Capture the std::function object by reference in the lambda in order to call it recursively.
+  // 3. Capture the std::function object by reference in the lambda in order to call it
+  // recursively.
 
   std::function<int(int const)> fib_create()
   {
@@ -58,8 +59,9 @@ namespace recipe_3_04 {
 
     {
       std::cout << "\nUsing recursive lambdas:\n";
-      std::function<int(int const)> fibonacci
-        = [&fibonacci](int const n) { return n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2); };
+      std::function<int(int const)> fibonacci = [&fibonacci](int const n) {
+        return n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2);
+      };
 
       auto f10 = fibonacci(10);
 
@@ -81,6 +83,5 @@ namespace recipe_3_04 {
 
       std::cout << "fib(10): " << f10 << std::endl;
     }
-
   }
 }

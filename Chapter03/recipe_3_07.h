@@ -3,13 +3,13 @@
 #include "funclib.h"
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <iostream>
 #include <list>
 #include <map>
 #include <queue>
 #include <string>
 #include <vector>
-#include <cmath>
 
 namespace recipe_3_07 {
   using namespace std::string_literals;
@@ -25,9 +25,8 @@ namespace recipe_3_07 {
 
   void execute()
   {
-    std::cout
-      << "\nRecipe 3.07: ."
-      << "\n----------------------------------------------------------\n";
+    std::cout << "\nRecipe 3.07: ."
+              << "\n----------------------------------------------------------\n";
 
     {
       auto vnums = std::vector<int>{ 0, 2, -3, 5, -1, 6, 8, -4, 9 };

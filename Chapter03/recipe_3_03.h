@@ -1,10 +1,10 @@
 #pragma once
 
 #include <algorithm>
+#include <iostream>
+#include <numeric>
 #include <string>
 #include <vector>
-#include <numeric>
-#include <iostream>
 
 // In C++, lambdas are basically syntactic sugar for unnamed function objects, which are
 // classes that implement the call operator. However, just like any other function, this
@@ -16,7 +16,8 @@
 
 // Write generic lambdas:
 
-// 1. By using the auto specifier instead of actual types for lambda expression parameters.
+// 1. By using the auto specifier instead of actual types for lambda expression
+// parameters.
 
 // 2. When you need to use multiple lambdas that only differ by their parameter types.
 
@@ -41,7 +42,6 @@ namespace recipe_3_03 {
   {
     std::cout << "\nRecipe 3.03: Using generic lambdas."
               << "\n-----------------------------------\n";
-
 
     auto numbers = std::vector<int>{ 0, 2, -3, 5, -1, 6, 8, -4, 9 };
     auto texts = std::vector<std::string>{ "hello"s, " "s, "world"s, "!"s };

@@ -29,7 +29,8 @@
 // explicitly define or default all of them.
 
 namespace recipe_3_01 {
-  // 1. ------------------------------------------------------------------------------------------------
+  // 1.
+  // ------------------------------------------------------------------------------------------------
   // obsolete style to prevent copying of objects
   class foo_not_copyable {
     // OBSOLETE style: public constructor and private copy and assigment constructors.
@@ -44,7 +45,8 @@ namespace recipe_3_01 {
     foo_not_copyable& operator=(foo_not_copyable const&);
   };
 
-  // 2. ------------------------------------------------------------------------------------------------
+  // 2.
+  // ------------------------------------------------------------------------------------------------
   // new style to prevent copying of objects
 
   // To implement a class that is not copyable, and implicitly not movable, declare the
@@ -64,7 +66,8 @@ namespace recipe_3_01 {
   struct Data {
   };
 
-  // 3. ------------------------------------------------------------------------------------------------
+  // 3.
+  // ------------------------------------------------------------------------------------------------
   // not copyable, but movable
 
   // To implement a class that is not copyable, but is movable, declare the copy
@@ -106,7 +109,8 @@ namespace recipe_3_01 {
     }
   };
 
-  // 4. ------------------------------------------------------------------------------------------------
+  // 4.
+  // ------------------------------------------------------------------------------------------------
   // inline functions
 
   class foo {
@@ -119,7 +123,8 @@ namespace recipe_3_01 {
   // inline functions can be declared '= default' outside the class body.
   inline foo& foo::operator=(foo const&) = default;
 
-  // 5. ------------------------------------------------------------------------------------------------
+  // 5.
+  // ------------------------------------------------------------------------------------------------
   // forward declarations
 
   // void forward_declared_function();
@@ -131,7 +136,8 @@ namespace recipe_3_01 {
 
   // void forward_declared_function() = delete; // Error!
 
-  // 6. ------------------------------------------------------------------------------------------------
+  // 6.
+  // ------------------------------------------------------------------------------------------------
   // free functions
 
   // To ensure a function is called only with objects of a specific type, and perhaps
