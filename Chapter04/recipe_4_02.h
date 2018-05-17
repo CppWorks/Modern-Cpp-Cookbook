@@ -1,7 +1,18 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+
+// The operator # is called the stringizing operator
+
+// The operator ## is called the token-pasting, merging, or concatenating operator.
+
+// Through the indirection pattern the argument x will be expanded.
+
 namespace recipe_4_02 {
+
 #define MAKE_STR2(x) #x
+// Helper macro doesn't have # or ## in it. So the argument will be expanded.
 #define MAKE_STR(x) MAKE_STR2(x)
 
 #define MERGE2(x, y) x##y
@@ -9,7 +20,7 @@ namespace recipe_4_02 {
 
 #define DECL_MAKE(x) DECL_MAKE2(x)
 #define DECL_MAKE2(x)                                                                    \
-  x* make##_##x()                                                                        \
+  x* make_##x()                                                                        \
   {                                                                                      \
     return new x();                                                                      \
   }
@@ -26,6 +37,11 @@ namespace recipe_4_02 {
 
   void execute()
   {
+    std::cout << "\nRecipe 4.02: Using the indirection pattern for preprocessor "
+                 "stringification and concatenation."
+              << "\n---------------------------------------------------------------------"
+                 "-------------------------\n";
+
     std::string s1{ MAKE_STR(sample) };  // s1 = "sample"
     std::string s2{ MAKE_STR2(sample) }; // s2 = "sample"
 

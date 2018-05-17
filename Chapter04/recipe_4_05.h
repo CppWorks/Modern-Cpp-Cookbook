@@ -1,8 +1,9 @@
 #pragma once
 
-namespace recipe_4_05 {
-#ifdef CONSTEXPR_IF_AVAILABLE
+#include <iostream>
+#include <type_traits>
 
+namespace recipe_4_05 {
   template <typename T>
   auto compute(T const a, T const b)
   {
@@ -60,25 +61,26 @@ namespace recipe_4_05 {
       }
     }
   }
-}
-#endif CONSTEXPR_IF_AVAILABLE
 
-void execute()
-{
-#ifdef CONSTEXPR_IF_AVAILABLE
+  void execute()
   {
-    auto v1 = compute(1, 2);
-    auto v2 = compute(1.0, 2.0);
-  }
+    std::cout << "\nRecipe 4.05: Selecting branches at compile time with constexpr if."
+              << "\n------------------------------------------------------------------\n";
 
-  {
-    using namespace binary;
-    using namespace binary_literals;
+    using namespace recipe_4_05;
 
-    auto b1 = 1010_b8;
-    auto b2 = 101010101010_b16;
-    auto b3 = 010101010101010101010101_b32;
+    {
+      auto v1 = compute(1, 2);
+      auto v2 = compute(1.0, 2.0);
+    }
+
+    {
+      using namespace binary;
+      using namespace binary_literals;
+
+      auto b1 = 1010_b8;
+      auto b2 = 101010101010_b16;
+      auto b3 = 010101010101010101010101_b32;
+    }
   }
-#endif
-}
 }

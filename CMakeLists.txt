@@ -26,6 +26,10 @@ add_executable(Chapter03 ${CMAKE_SOURCE_DIR}/Chapter03/main.cpp)
 target_compile_features(Chapter02 PUBLIC cxx_std_17)
 
 # Chapter 4 - Preprocessor and Compilation
+
+add_executable(Chapter04 ${CMAKE_SOURCE_DIR}/Chapter04/main.cpp)
+target_compile_features(Chapter02 PUBLIC cxx_std_17)
+
 # Chapter 5 - Standard Library Containers, Algorithms, and Iterators
 # Chapter 6 - General Purpose Utilities
 # Chapter 7 - Working with Files and Streams

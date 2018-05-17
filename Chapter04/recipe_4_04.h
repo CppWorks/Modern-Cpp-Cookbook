@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <type_traits>
 
 using namespace std::string_literals;
 
@@ -64,14 +65,14 @@ namespace recipe_4_04 {
   template <typename T>
   auto compute(T const a, T const b)
   {
-    static_assert(std::is_integral<T>, "An integral type expected");
+    static_assert(std::is_integral<T>::value, "An integral type expected");
     return a + b;
   }
 
   template <typename T, typename = void>
   auto compute(T const a, T const b)
   {
-    static_assert(!std::is_integral<T>, "A non-integral type expected");
+    static_assert(!std::is_integral<T>::value, "A non-integral type expected");
     return a * b;
   }
 
@@ -89,6 +90,10 @@ namespace recipe_4_04 {
 
   void execute()
   {
+    std::cout
+      << "\nRecipe 4.04: Conditionally compiling classes and functions with enable_if."
+      << "\n--------------------------------------------------------------------------\n";
+
     {
       func(42);
       func<some_type<int>>(42);

@@ -2,6 +2,12 @@
 
 #include <iostream>
 
+// #ifdef identifier is equivalent to #if defined(identifier).
+
+// #ifndef identifier is equivalent to #if !defined(identifier).
+
+// defined(identifier) and defined identifier are equivalent.
+
 namespace recipe_4_01 {
 
 #if !defined(_UNIQUE_NAME_)
@@ -110,12 +116,15 @@ namespace recipe_4_01 {
 
   void execute()
   {
+    std::cout
+      << "\nRecipe 4.01: Conditionally compiling your source code."
+      << "\n------------------------------------------------------\n";
+
     show_compiler();
-
     show_compiler_version();
-
     show_architecture();
-
+    // Compilers such as GCC and Clang do not define any special macros for debug
+    // configurations (when the -g flag is used).
     show_configuration();
   }
 }

@@ -42,12 +42,11 @@
 
 ## Chapter 4 - Preprocessor and Compilation
 ### 4.01 Conditionally compiling your source code
-### 4.02 Using the indirection pattern for preprocessor stringification and
-### 4.03 concatenation
-### 4.04 Performing compile-time assertion checks with static_assert
-### 4.05 Conditionally compiling classes and functions with enable_if
-### 4.06 Selecting branches at compile time with constexpr if
-### 4.07 Providing metadata to the compiler with attributes
+### 4.02 Using the indirection pattern for preprocessor stringification and concatenation
+### 4.03 Performing compile-time assertion checks with static_assert
+### 4.04 Conditionally compiling classes and functions with enable_if
+### 4.05 Selecting branches at compile time with constexpr if
+### 4.06 Providing metadata to the compiler with attributes
 
 ## Chapter 5 - Standard Library Containers, Algorithms, and Iterators
 ### 5.01 Using vector as a default container

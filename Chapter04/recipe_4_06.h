@@ -1,7 +1,8 @@
 #pragma once
 
+#include <iostream>
+
 namespace recipe_4_06 {
-#ifdef ATTRIBUTES_AVAILABLE
   [[nodiscard]] int get_value1()
   {
     return 42;
@@ -32,11 +33,13 @@ namespace recipe_4_06 {
 
   void option1() {}
   void option2() {}
-#endif
 
   void execute()
   {
-#ifdef ATTRIBUTES_AVAILABLE
+    std::cout
+      << "\nRecipe 4.06: Providing metadata to the compiler with attributes."
+      << "\n----------------------------------------------------------------\n";
+
     {
       // warning: ignoring return value of function declared with 'nodiscard' attribute
       get_value1();
@@ -70,6 +73,5 @@ namespace recipe_4_06 {
         option2();
       }
     }
-#endif
   }
 }
