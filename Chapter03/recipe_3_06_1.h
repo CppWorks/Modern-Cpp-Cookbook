@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace recipe_3_08 {
+namespace recipe_3_06_1 {
 
 // only works with Clang 3.9
 
@@ -51,6 +51,12 @@ namespace recipe_3_08 {
 
   void execute()
   {
+    std::cout << "\nRecipe 3.06.1: Using fold expressions to simplify variadic function "
+                 "templates."
+              << "\n---------------------------------------------------------------------"
+                 "---------"
+              << "\nRight now only works with CLang.\n";
+
 #ifdef __clang__
     std::cout << min(10, 2, 3, 4, 5) << std::endl;
 

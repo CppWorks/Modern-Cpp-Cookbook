@@ -48,25 +48,32 @@ namespace recipe_3_07_1 {
 
   void execute()
   {
-    std::cout << "\nRecipe 3.07.1: Implementing higher-order functions map and fold."
-              << "\n----------------------------------------------------------------\n";
+    std::cout << "\nRecipe 3.07.1: Implementing higher-order functions map and fold "
+                 "using fold expressions."
+              << "\n---------------------------------------------------------------------"
+                 "------------------\n";
 
     using namespace std::string_literals;
 
     {
       auto n = sum(1, 2, 3, 4, 5);
       auto s = sum("hello"s, " "s, "world"s, "!"s);
+      std::cout << n << std::endl;
+      std::cout << s << std::endl;
     }
 
     {
       auto n = fold(std::plus<>(), 1, 2, 3, 4, 5);
       auto s = fold(std::plus<>(), "hello"s, " "s, "world"s, "!"s);
+      std::cout << n << std::endl;
+      std::cout << s << std::endl;
     }
 
     {
       auto i1 = is_any(42, 1, 23, 76, 44, 5);
-
       auto a = 0;
+      std::cout << std::boolalpha << i1 << std::endl;
+      std::cout << std::boolalpha << a << std::endl;
     }
   }
 }

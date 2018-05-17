@@ -25,21 +25,32 @@ namespace recipe_3_07 {
 
   void execute()
   {
-    std::cout << "\nRecipe 3.07: Implementing higher-order functions map and fold."
-              << "\n--------------------------------------------------------------\n";
+    std::cout << "\nRecipe 3.07: Implementing higher-order functions map and fold using "
+                 "STL algorithms."
+              << "\n---------------------------------------------------------------------"
+                 "--------------\n";
 
     {
       auto vnums = std::vector<int>{ 0, 2, -3, 5, -1, 6, 8, -4, 9 };
       auto r = funclib::mapf([](int const i) { return std::abs(i); }, vnums);
       // r = {0, 2, 3, 5, 1, 6, 8, 4, 9}
+      for (auto& item : r)
+        std::cout << item << " ";
+      std::cout << std::endl;
 
       auto lnums = std::list<int>{ 1, 2, 3, 4, 5 };
       auto l = funclib::mapf([](int const i) { return i * i; }, lnums);
       // l = {1, 4, 9, 16, 25}
+      for (auto& item : l)
+        std::cout << item << " ";
+      std::cout << std::endl;
 
       auto amounts = std::array<double, 5>{ 10.42, 2.50, 100.0, 23.75, 12.99 };
       auto a = funclib::mapf(fround<>(), amounts);
       // a = {10.0, 3.0, 100.0, 24.0, 13.0}
+      for (auto& item : a)
+        std::cout << item << " ";
+      std::cout << std::endl;
 
       auto words
         = std::map<std::string, int>{ { "one", 1 }, { "two", 2 }, { "three", 3 } };
@@ -49,6 +60,9 @@ namespace recipe_3_07 {
         },
         words);
       // m = { {"ONE", 1}, {"TWO", 2}, {"THREE", 3} }
+      for (auto & [ key, value ] : m) {
+        std::cout << key << " " << value << std::endl;
+      }
 
       auto priorities = std::queue<int>();
       priorities.push(10);
@@ -58,6 +72,14 @@ namespace recipe_3_07 {
       priorities.push(50);
       auto p = funclib::mapf([](int const i) { return i > 30 ? 2 : 1; }, priorities);
       // p = {1, 1, 1, 2, 2}
+      auto tmp_q = p;
+
+      while (!tmp_q.empty()) {
+        auto q_element = tmp_q.front();
+        std::cout << q_element << " ";
+        tmp_q.pop();
+      }
+      std::cout << "\n";
     }
 
     {
@@ -95,6 +117,7 @@ namespace recipe_3_07 {
       q.push(4);
       q.push(5);
       auto sum = funclib::foldl(std::plus<>(), q, 0); // sum = 15
+      std::cout << sum << std::endl;
     }
 
     {
@@ -106,6 +129,7 @@ namespace recipe_3_07 {
                       funclib::mapf([](int const i) { return std::abs(i); }, vnums)),
         0);
       // s = 76
+      std::cout << s << std::endl;
     }
   }
 }

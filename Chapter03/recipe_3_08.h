@@ -11,14 +11,6 @@ namespace recipe_3_08 {
     return funclib::compose(std::forward<F>(f), std::forward<G>(g));
   }
 
-  /*
-  template <typename F, typename... R>
-  auto operator*(F&& f, R&&... r)
-  {
-    return funclib::operator*(std::forward<F>(f), r...);
-  }
-  */
-
   void execute()
   {
     std::cout << "\nRecipe 3.08: Composing functions into a higher-order function."
@@ -47,8 +39,8 @@ namespace recipe_3_08 {
     }
 
     {
-      auto n = ([](int const n) { return std::to_string(n); },
-                [](int const n) { return n * n; } * [](int const n) { return n + n; },
+      auto n = ([](int const n) { return std::to_string(n); } *
+                [](int const n) { return n * n; } * [](int const n) { return n + n; } *
                 [](int const n) { return std::abs(n); })(-3);
 
       auto c = [](std::vector<int> const& v) { return foldl(std::plus<>(), v, 0); } *

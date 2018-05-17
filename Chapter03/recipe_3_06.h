@@ -13,8 +13,8 @@
 
 Expression             Expansion
 (... op pack)          ((pack$1 op pack$2) op ...) op pack$n
-(init op ... op pack)  (((init op pack$1) op pack$2) op ...) op pack$n
 (pack op ...)          pack$1 op (... op (pack$n-1 op pack$n))
+(init op ... op pack)  (((init op pack$1) op pack$2) op ...) op pack$n
 (pack op ... op init)  pack$1 op (... op (pack$n-1 op (pack$n op init)))
 
 clang-format on
@@ -23,6 +23,7 @@ clang-format on
 namespace recipe_3_06 {
 
   // To fold a parameter pack over a binary operator, use one of the following forms:
+  // Note: There is always only ONE ... in all the forms!
 
   // 1. Left folding with a unary form (... op pack)
 
