@@ -11,6 +11,24 @@
 #include <string>
 #include <vector>
 
+// To implement the MAP function you should:
+
+// Use std::transform on containers that support iterating and assignment to the elements,
+// such as std::vector or std::list.
+
+// Use other means such as explicit iteration and insertion for containers that do not
+// support assignment to the elements, such as std::map.
+
+// To implement the FOLD function you should:
+
+// Use std::accumulate() on containers that support iterating.
+
+// Use other means to explicitly process containers that do not support iterating, such as
+// std::queue
+
+// We have implemented the map in a functional way, without side-effects. That means it
+// preserves the original range and returns a new one.
+
 namespace recipe_3_07 {
   using namespace std::string_literals;
 

@@ -71,9 +71,7 @@ namespace recipe_3_07_1 {
 
     {
       auto i1 = is_any(42, 1, 23, 76, 44, 5);
-      auto a = 0;
       std::cout << std::boolalpha << i1 << std::endl;
-      std::cout << std::boolalpha << a << std::endl;
     }
   }
 }
