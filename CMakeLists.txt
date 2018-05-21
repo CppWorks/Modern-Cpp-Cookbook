@@ -22,15 +22,19 @@ target_compile_features(Chapter02 PUBLIC cxx_std_17)
 
 # Chapter 3 - Exploring Functions
 
-add_executable(Chapter03 ${CMAKE_SOURCE_DIR}/Chapter03/main.cpp)
-target_compile_features(Chapter02 PUBLIC cxx_std_17)
+# add_executable(Chapter03 ${CMAKE_SOURCE_DIR}/Chapter03/main.cpp)
+# target_compile_features(Chapter03 PUBLIC cxx_std_17)
 
 # Chapter 4 - Preprocessor and Compilation
 
 add_executable(Chapter04 ${CMAKE_SOURCE_DIR}/Chapter04/main.cpp)
-target_compile_features(Chapter02 PUBLIC cxx_std_17)
+target_compile_features(Chapter04 PUBLIC cxx_std_17)
 
 # Chapter 5 - Standard Library Containers, Algorithms, and Iterators
+
+add_executable(Chapter05 ${CMAKE_SOURCE_DIR}/Chapter05/main.cpp)
+target_compile_features(Chapter05 PUBLIC cxx_std_17)
+
 # Chapter 6 - General Purpose Utilities
 # Chapter 7 - Working with Files and Streams
 # Chapter 8 - Leveraging Threading and Concurrency

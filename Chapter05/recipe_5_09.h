@@ -1,7 +1,22 @@
 #pragma once
 
+// For a list of all iterators defined in the standard: http://www.cplusplus.com/reference/iterator/
+
+// The standard library defines five categories of iterators:
+
+// Input iterators
+// Output iterators
+// Forward iterators
+// Bidirectional iterators
+// Random access iterators
+
+// Forward, bidirectional, and random access iterators that also implement the
+// requirements of output iterators are called mutable iterators.
+
 #include <algorithm>
 #include <cassert>
+#include <functional> //std::bad_function_call
+#include <iostream>
 #include <memory>
 #include <string>
 
@@ -48,6 +63,12 @@ namespace recipe_5_09 {
       return SIZE;
     }
 
+    // To provide mutable and constant random access iterators for the dummy_array class
+    // add the following members to the class:
+
+    // An iterator class template, which is parameterized with the type of elements and
+    // the size of the array. The class must have the following public typedefs that
+    // define standard synonyms:
     template <typename T, size_t const Size>
     class dummy_array_iterator {
     public:
@@ -59,23 +80,32 @@ namespace recipe_5_09 {
       typedef ptrdiff_t difference_type;
 
     private:
+      // Private members for the iterator class: a pointer to the array data and a current
+      // index into the array:
       pointer ptr = nullptr;
       size_t index = 0;
 
+      // Private method for the iterator class to check whether two iterator instances
+      // point to the same array data:
       bool compatible(self_type const& other) const
       {
         return ptr == other.ptr;
       }
 
     public:
+      // An explicit constructor for the iterator class:
       explicit dummy_array_iterator(pointer ptr, size_t const index)
         : ptr(ptr)
         , index(index)
       {
       }
-
       // --- common to all iterators ---
       // copy-constructible, copy-assignable and destructible
+
+      // Iterator class members to meet common requirements for all iterators:
+      // copy-constructible, copy-assignable, destructible, prefix, and postfix
+      // incrementable. In this implementation, the post increment operator is implemented
+      // in terms of the pre-increment operator to avoid code duplication:
       dummy_array_iterator(dummy_array_iterator const& o) = default;
       dummy_array_iterator& operator=(dummy_array_iterator const& o) = default;
       ~dummy_array_iterator() = default;
@@ -100,6 +130,9 @@ namespace recipe_5_09 {
 
       // --- input iterator ---
       // supports equality/inequality comparisons
+
+      // Iterator class members to meet input iterator requirements: test for
+      // equality/inequality, dereferenceable as rvalues:
       bool operator==(self_type const& other) const
       {
         assert(compatible(other));
@@ -134,6 +167,9 @@ namespace recipe_5_09 {
 
       // --- forward iterator ---
       // default-constructible
+
+      // Iterator class members to meet forward iterator requirements: default
+      // constructible:
       dummy_array_iterator() = default;
 
       // multi-pass: neither dereferencing nor incrementing affects dereferenceability
@@ -141,6 +177,9 @@ namespace recipe_5_09 {
 
       // --- bidirectional iterator ---
       // can be decremented
+
+      // Iterator class members to meet bidirectional iterator requirements:
+      // decrementable:
       self_type& operator--()
       {
         if (index <= 0)
@@ -160,6 +199,10 @@ namespace recipe_5_09 {
 
       // --- random access iterator ---
       // supports arithmetic operators + and -
+
+      // Iterator class members to meet random access iterator requirements: arithmetic
+      // add and subtract, comparable for inequality with other iterators, compound
+      // assignments, and offset dereferenceable:
       self_type operator+(difference_type offset) const
       {
         self_type tmp = *this;
@@ -229,10 +272,13 @@ namespace recipe_5_09 {
       // --- random access iterator ---
     };
 
+    // Add typedefs to the dummy_array class for mutable and constant iterator synonyms:
     typedef dummy_array_iterator<Type, SIZE> iterator;
     typedef dummy_array_iterator<Type const, SIZE> constant_iterator;
 
   public:
+    // Add the public begin() and end() functions to the dummy_array class to return the
+    // iterators to the first and one-past-last elements in the array:
     iterator begin()
     {
       return iterator(data, 0);
@@ -256,6 +302,9 @@ namespace recipe_5_09 {
 
   void execute()
   {
+    std::cout << "\nRecipe 5.09: Writing your own random access iterator."
+              << "\n-----------------------------------------------------\n"
+              << "Please check soure code for reference.\n\n";
     {
       dummy_array<int, 5> a;
       a[0] = 1;
