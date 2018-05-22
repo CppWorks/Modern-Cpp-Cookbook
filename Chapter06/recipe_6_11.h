@@ -1,5 +1,10 @@
 #pragma once
 
+// std::conditional that enables us to choose between several types at compile time, based
+// on a compile-time Boolean expression.
+
+#include <functional>
+#include <iostream>
 #include <random>
 #include <string>
 #include <type_traits>
@@ -7,8 +12,12 @@
 namespace recipe_6_11 {
   using namespace std::string_literals;
 
+  // In a type alias or typedef, to select between a 32-bit and 64-bit integer type, based
+  // on the platform:
   using long_type = std::conditional<sizeof(void*) <= 4, long, long long>::type;
 
+  // In an alias template, to select between a 8-, 16-, 32-, or 64-bit integer type, based
+  // on the user specification:
   template <int size>
   using number_type = typename std::conditional<
     size <= 1, std::int8_t,
@@ -16,6 +25,8 @@ namespace recipe_6_11 {
                               typename std::conditional<size <= 4, std::int32_t,
                                                         std::int64_t>::type>::type>::type;
 
+  // In a type template parameter, to select between integer and real uniform
+  // distribution:
   template <typename T,
             typename D = std::conditional_t<std::is_integral<T>::value,
                                             std::uniform_int_distribution<T>,
@@ -37,6 +48,9 @@ namespace recipe_6_11 {
 
   void execute()
   {
+    std::cout << "\nRecipe 6.11: Using std::conditional to choose between types."
+              << "\n------------------------------------------------------------\n";
+
     {
       auto n = long_type{ 42 };
     }
@@ -81,13 +95,17 @@ namespace recipe_6_11 {
         std::cout << std::endl;
       };
 
+      std::cout << "Integer uniform distribution:\n";
       auto v1 = GenerateRandom(1, 10, 10);
       lprint(v1);
 
+      std::cout << "\nReal uniform distribution:\n";
       auto v2 = GenerateRandom(1.0, 10.0, 10);
       lprint(v2);
 
       // auto v3 = GenerateRandom("1.0"s, "10.0"s, 10); // error
     }
+
+    std::cout << "---------------------------------\n\n";
   }
 }
