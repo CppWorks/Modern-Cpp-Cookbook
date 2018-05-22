@@ -1,9 +1,16 @@
 #pragma once
 
+// C++ does not have a hierarchical type system like other languages therefore, it does
+// not have a possibility to store multiple types of value in a single variable.
+// Developers have long time used void* for that purpose, but this only helps store
+// pointers to anything and is not type-safe. C++17 has introduced a standard type-safe
+// container, called std::any, that can hold a single value of any type.
+
 #include <any>
 #include <chrono>
 #include <ctime>
 #include <iomanip>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -37,13 +44,20 @@ namespace recipe_6_04 {
 
   void execute()
   {
+    std::cout << "\nRecipe 6.04: Using std::any to store any value."
+              << "\n-----------------------------------------------\n";
     {
+      std::cout << "\nTo store values, use the constructor or assign them directly to a "
+                   "std::any variable:\n";
+      std::cout << "See source code.\n";
+
       std::any value(42); // integer     12
       value = 42.0;       // double      12.0
       value = "42"s;      // std::string "12"
     }
 
     {
+      std::cout << "\nTo check whether the container stores a value, use the has_value() member function:\n";
       auto ltest = [](std::any const& a) {
         if (a.has_value())
           std::cout << "has value" << std::endl;
@@ -55,11 +69,13 @@ namespace recipe_6_04 {
       ltest(value); // no value
       value = 42;
       ltest(value); // has value
+      // To modify the stored value, use member functions emplace() , reset(), or swap():
       value.reset();
       ltest(value); // no value
     }
 
     {
+      std::cout << "\nTo read values, use the non-member function std::any_cast():\n";
       std::any value = 42.0;
 
       try {
@@ -102,6 +118,7 @@ namespace recipe_6_04 {
     }
 
     {
+      std::cout << "\nCheck whether the container has any value, check the type of the stored value, and read the value from the container.\n";
       log(std::any{});                       // (empty)
       log(12);                               // 12
       log("12"s);                            // 12
@@ -110,6 +127,8 @@ namespace recipe_6_04 {
     }
 
     {
+      std::cout << "\nTo store multiple values of any type, use a standard container "
+                   "such as std::vector to hold values of the type std::any:\n";
       std::vector<std::any> values;
       values.push_back(std::any{});
       values.push_back(12);
@@ -122,6 +141,7 @@ namespace recipe_6_04 {
     }
 
     {
+      // Trying to assign a custom type to std::any.
       struct foo {
         foo() = default;
         foo(foo const&) = delete;

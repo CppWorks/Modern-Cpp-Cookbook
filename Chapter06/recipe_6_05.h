@@ -1,9 +1,12 @@
 #pragma once
 
+// Sometimes, it is useful to be able to store either a value or a null if a value is not available.
+
 #include <map>
 #include <optional>
 #include <string>
 #include <vector>
+#include <iostream>
 
 namespace recipe_6_05 {
   using namespace std::string_literals;
@@ -32,6 +35,7 @@ namespace recipe_6_05 {
     }
   };
 
+  // Use std::optional to return values from functions that may fail to produce a value:
   template <typename K, typename V>
   std::optional<V> find(int const key, std::map<K, V> const& m)
   {
@@ -42,6 +46,7 @@ namespace recipe_6_05 {
     return {};
   }
 
+  // Use std::optional for class data members that are optional:
   struct book {
     std::string title;
     std::optional<std::string> subtitle;
@@ -52,6 +57,7 @@ namespace recipe_6_05 {
     std::optional<int> year;
   };
 
+  // Use std::optional for parameters to functions that are optional:
   std::string extract(std::string const& text, std::optional<int> start,
                       std::optional<int> end)
   {
@@ -66,6 +72,9 @@ namespace recipe_6_05 {
 
   void execute()
   {
+    std::cout << "\nRecipe 6.05: Using std::optional to store optional values."
+              << "\n----------------------------------------------------------\n";
+
     auto lprint = [](auto const& o) {
       if (o)
         std::cout << *o << std::endl;
@@ -74,6 +83,8 @@ namespace recipe_6_05 {
     };
 
     {
+      std::cout << "\nTo store a value, use the constructor or assign the value directly "
+                   "to an std::optional object:\n";
       std::optional<int> v1;
       lprint(v1); // (empty)
       std::optional<int> v2(42);
@@ -85,6 +96,8 @@ namespace recipe_6_05 {
     }
 
     {
+      std::cout << "\nTo read the stored value, use operator* for simple types and "
+                   "operator-> for complex types:\n";
       std::optional<int> v1{ 42 };
       std::cout << *v1 << std::endl; // 42
 
@@ -93,6 +106,17 @@ namespace recipe_6_05 {
     }
 
     {
+      std::cout << "\nAlternatively, use member functions value() and value_or() to read the stored value:\n";
+      std::optional<std::string> v1{ "text"s };
+      std::cout << v1.value() << std::endl; // text
+
+      std::optional<std::string> v2;
+      std::cout << v2.value_or("default"s) << std::endl; // default
+    }
+
+    {
+      std::cout << "\nTo check whether the container stores a value, use a conversion operator to bool or the member function has_value():\n";
+
       std::optional<int> v1{ 42 };
       if (v1)
         std::cout << *v1 << std::endl;
@@ -103,14 +127,8 @@ namespace recipe_6_05 {
     }
 
     {
-      std::optional<std::string> v1{ "text"s };
-      std::cout << v1.value() << std::endl; // text
+      std::cout << "\nTo modify the stored value, use member functions emplace() , reset(), or swap():\n";
 
-      std::optional<std::string> v2;
-      std::cout << v2.value_or("default"s) << std::endl; // default
-    }
-
-    {
       std::optional<int> v{ 42 };
       lprint(v); // 42
       v.reset();
@@ -118,6 +136,8 @@ namespace recipe_6_05 {
     }
 
     {
+      std::cout << "\nfind(value, map) uses std::optional as return value:\n";
+
       std::map<int, std::string> m{ { 1, "one"s }, { 2, "two"s }, { 3, "three"s } };
       auto value = find(2, m);
       if (value)
@@ -129,6 +149,8 @@ namespace recipe_6_05 {
     }
 
     {
+      std::cout << "\nUse std::optional for function arguments:\n";
+
       auto v1 = extract("sample"s, {}, {});
       std::cout << v1 << std::endl; // sample
 
@@ -140,11 +162,23 @@ namespace recipe_6_05 {
     }
 
     {
+      std::cout << "\nstd::optional can be copy constructed in e.g. in function argument:\n";
+
+      // The first call to process() does not involve any additional object construction
+      // because we pass an std::optional<bar> object. The second call, however, will
+      // involve the copy construction of a bar object, because b2 is a bar and needs to
+      // be copied to an std::optional<bar>; a copy is made even if bar has move semantics
+      // implemented.
+
       std::optional<bar> b1{ bar{} };
+      std::cout << "------------\n";
       bar b2{};
+      std::cout << "------------\n";
 
       process(b1); // no copy
+      std::cout << "------------\n";
       process(b2); // copy construction
+      std::cout << "------------\n";
     }
   }
 }

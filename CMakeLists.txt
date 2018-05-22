@@ -36,6 +36,10 @@ add_executable(Chapter05 ${CMAKE_SOURCE_DIR}/Chapter05/main.cpp)
 target_compile_features(Chapter05 PUBLIC cxx_std_17)
 
 # Chapter 6 - General Purpose Utilities
+
+add_executable(Chapter06 ${CMAKE_SOURCE_DIR}/Chapter06/main.cpp)
+target_compile_features(Chapter06 PUBLIC cxx_std_17)
+
 # Chapter 7 - Working with Files and Streams
 # Chapter 8 - Leveraging Threading and Concurrency
 # Chapter 9 - Robustness and Performance
