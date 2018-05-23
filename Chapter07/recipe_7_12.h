@@ -1,6 +1,9 @@
 #pragma once
 
-#include <filesystem>
+// We will see how we can use the directory iterators and the iterating patterns shown
+// earlier to find files that match a given criteria.
+
+#include <experimental/filesystem>
 #include <functional>
 #include <iostream>
 
@@ -26,9 +29,14 @@ namespace recipe_7_12 {
 
   void execute()
   {
+    std::cout << "\nRecipe 7.12: Finding a file."
+              << "\n----------------------------\n\n";
+
     // find files containing prefix 'file_'
     {
-      auto results = find_files(fs::current_path() / "test", [](fs::path const& p) {
+      std::cout << "Files beginning with 'file_'\n\n";
+
+      auto results = find_files(fs::current_path() / "..", [](fs::path const& p) {
         auto filename = p.wstring();
         return filename.find(L"file_") != std::wstring::npos;
       });
@@ -40,8 +48,10 @@ namespace recipe_7_12 {
 
     // find files with extension '.cpp'
     {
-      auto results = find_files(fs::current_path() / "test", [](fs::path const& p) {
-        return p.extension() == L".dat";
+      std::cout << "\nSource files:\n\n";
+
+      auto results = find_files(fs::current_path() / "..", [](fs::path const& p) {
+        return p.extension() == L".cpp";
       });
 
       for (auto const& path : results) {

@@ -8,7 +8,6 @@ project(Modern-Cpp-Cookbook VERSION 0.0.1)
 # find_package(Threads)
 
 # Chapter 1 - Learning Modern Core Language Features
-
 add_executable(Chapter01
   ${CMAKE_SOURCE_DIR}/Chapter01/main.cpp
   ${CMAKE_SOURCE_DIR}/Chapter01/recipe_1_11_1.cpp
@@ -16,35 +15,32 @@ add_executable(Chapter01
 target_compile_features(Chapter01 PUBLIC cxx_std_17)
 
 # Chapter 2 - Working with Numbers and Strings
-
 add_executable(Chapter02 ${CMAKE_SOURCE_DIR}/Chapter02/main.cpp)
 target_compile_features(Chapter02 PUBLIC cxx_std_17)
 
 # Chapter 3 - Exploring Functions
-
 # add_executable(Chapter03 ${CMAKE_SOURCE_DIR}/Chapter03/main.cpp)
 # target_compile_features(Chapter03 PUBLIC cxx_std_17)
 
 # Chapter 4 - Preprocessor and Compilation
-
 add_executable(Chapter04 ${CMAKE_SOURCE_DIR}/Chapter04/main.cpp)
 target_compile_features(Chapter04 PUBLIC cxx_std_17)
 
 # Chapter 5 - Standard Library Containers, Algorithms, and Iterators
-
 add_executable(Chapter05 ${CMAKE_SOURCE_DIR}/Chapter05/main.cpp)
 target_compile_features(Chapter05 PUBLIC cxx_std_17)
 
 # Chapter 6 - General Purpose Utilities
-
 add_executable(Chapter06 ${CMAKE_SOURCE_DIR}/Chapter06/main.cpp)
 target_compile_features(Chapter06 PUBLIC cxx_std_17)
 
 # Chapter 7 - Working with Files and Streams
-
 add_executable(Chapter07 ${CMAKE_SOURCE_DIR}/Chapter07/main.cpp)
 target_compile_features(Chapter07 PUBLIC cxx_std_17)
 target_link_libraries(Chapter07 PUBLIC stdc++fs)
+add_custom_command(
+  TARGET Chapter07 PRE_BUILD
+  COMMAND cp ${CMAKE_SOURCE_DIR}/Chapter07/sample.plays ${CMAKE_CURRENT_BINARY_DIR})
 
 # Chapter 8 - Leveraging Threading and Concurrency
 # Chapter 9 - Robustness and Performance

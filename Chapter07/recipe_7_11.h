@@ -1,6 +1,10 @@
 #pragma once
 
-#include <filesystem>
+// The file library provides two directory iterators, one called directory_iterator that
+// iterates the content of a directory, and one called recursive_directory_iterator that
+// iterates recursively the content of a directory and its subdirectories.
+
+#include <experimental/filesystem>
 #include <iomanip>
 #include <iostream>
 
@@ -9,6 +13,9 @@ namespace fs = std::experimental::filesystem;
 namespace recipe_7_11 {
   void visit_directory_1(fs::path const& dir)
   {
+    std::cout << "Visit directory:\n";
+    std::cout << "----------------\n\n";
+
     if (fs::exists(dir) && fs::is_directory(dir)) {
       for (auto const& entry : fs::directory_iterator(dir)) {
         auto filename = entry.path().filename();
@@ -22,13 +29,15 @@ namespace recipe_7_11 {
           std::cout << "[?]" << filename << std::endl;
       }
     } else {
-      std::wcout << "Directory " << std::quoted(dir.c_str()) << " does not exit"
-                 << std::endl;
+      std::wcout << "Directory " << dir.c_str() << " does not exit" << std::endl;
     }
   }
 
   void visit_directory_2(fs::path const& dir)
   {
+    std::cout << "\n12Visit directory recursively:\n";
+    std::cout << "----------------------------\n\n";
+
     if (fs::exists(dir) && fs::is_directory(dir)) {
       for (auto const& entry : fs::recursive_directory_iterator(dir)) {
         auto filename = entry.path().filename();
@@ -42,14 +51,16 @@ namespace recipe_7_11 {
           std::cout << "[?]" << filename << std::endl;
       }
     } else {
-      std::wcout << "Directory " << std::quoted(dir.c_str()) << " does not exit"
-                 << std::endl;
+      std::wcout << "Directory " << dir.c_str() << " does not exit" << std::endl;
     }
   }
 
   void visit_directory(fs::path const& dir, bool const recursive = false,
                        unsigned int const level = 0)
   {
+    std::cout << "\nVisit directory recursively (manual recursion):\n";
+    std::cout << "-----------------------------------------------\n\n";
+
     if (fs::exists(dir) && fs::is_directory(dir)) {
       auto lead = std::string(level * 3, ' ');
       for (auto const& entry : fs::directory_iterator(dir)) {
@@ -66,8 +77,7 @@ namespace recipe_7_11 {
           std::cout << lead << "[?]" << filename << std::endl;
       }
     } else {
-      std::wcout << "Directory " << std::quoted(dir.c_str()) << " does not exit"
-                 << std::endl;
+      std::wcout << "Directory " << dir.c_str() << " does not exit" << std::endl;
     }
   }
 
@@ -91,7 +101,10 @@ namespace recipe_7_11 {
 
   void execute()
   {
-    auto path = fs::current_path() / "test";
+    std::cout << "\nRecipe 7.11: Enumerating the content of a directory."
+              << "\n----------------------------------------------------\n\n";
+
+    auto path = fs::current_path() / ".";
     visit_directory_1(path);
     visit_directory_2(path);
     visit_directory(path, true);
