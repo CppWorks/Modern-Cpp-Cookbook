@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <chrono>
 
 namespace recipe_7_06 {
   void write_time()
@@ -11,11 +12,7 @@ namespace recipe_7_06 {
     auto stime = std::chrono::system_clock::to_time_t(now);
     auto ltime = std::localtime(&stime);
 
-#ifdef _WIN32
-    auto loc_uk = std::locale{ "English_UK.1252" };
-#else
     auto loc_uk = std::locale{ "en_GB.utf8" };
-#endif
 
     std::cout.imbue(loc_uk);
 
@@ -50,11 +47,9 @@ namespace recipe_7_06 {
 
     {
       std::istringstream stext("Sun 04 Dec 2016 05:35:30 JST");
-#ifdef _WIN32
-      auto loc_uk = std::locale{ "English_UK.1252" };
-#else
+
       auto loc_uk = std::locale{ "en_GB.utf8" };
-#endif
+
       stext.imbue(loc_uk);
 
       auto time = std::tm{};
@@ -70,8 +65,10 @@ namespace recipe_7_06 {
 
   void execute()
   {
-    write_time();
+    std::cout << "\nRecipe 7.06: Using time I/O manipulators."
+              << "\n-----------------------------------------\n";
 
+    write_time();
     read_time();
   }
 }

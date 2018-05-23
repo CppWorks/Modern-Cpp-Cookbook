@@ -1,12 +1,24 @@
 #pragma once
 
+//  In this recipe, we will see how we can serialize and deserialize both POD and non-POD
+//  types to and from binary files.
+
+// Libraries:
+// https://developers.google.com/protocol-buffers/
+// https://uscilab.github.io/cereal/
+// https://stackoverflow.com/questions/3637581/fastest-c-serialization
+
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace recipe_7_02 {
   using namespace std::string_literals;
 
+  // To serialize non-POD types (or POD types that contain pointers), you must explicitly
+  // write the value of data members to a file, and to deserialize, you must explicitly
+  // read from the file to the data members in the same order.
   class foo {
     int i;
     char c;
@@ -33,6 +45,7 @@ namespace recipe_7_02 {
       return !(*this == rhv);
     }
 
+    // Add a member function called write() to serialize objects of this class:
     bool write(std::ofstream& ofile) const
     {
       ofile.write(reinterpret_cast<const char*>(&i), sizeof(i));
@@ -44,6 +57,7 @@ namespace recipe_7_02 {
       return !ofile.fail();
     }
 
+    // Add a member function called read() to deserialize objects of this class:
     bool read(std::ifstream& ifile)
     {
       ifile.read(reinterpret_cast<char*>(&i), sizeof(i));
@@ -56,6 +70,8 @@ namespace recipe_7_02 {
       return !ifile.fail();
     }
 
+    // An alternative to the write() and read() member functions exemplified above is to
+    // overload operator<< and operator>>:
     friend std::ofstream& operator<<(std::ofstream& ofile, foo const& f);
     friend std::ifstream& operator>>(std::ifstream& ifile, foo& f);
   };
@@ -85,6 +101,8 @@ namespace recipe_7_02 {
 
   void test1()
   {
+    std::cout << "Serializing simple POD:\n";
+
     auto f = foo{ 1, '1', "1"s };
 
     {
@@ -104,12 +122,14 @@ namespace recipe_7_02 {
         ifile.close();
       }
 
-      std::cout << (f == f2 ? "equal" : "not equal") << std::endl;
+      std::cout << "Both objects are " << (f == f2 ? "equal." : "not equal.") << "\n\n";
     }
   }
 
   void test2()
   {
+    std::cout << "Serializing simple POD with overloaded operators<< and >>:\n";
+
     auto f = foo{ 1, '1', "1"s };
 
     {
@@ -129,7 +149,7 @@ namespace recipe_7_02 {
         ifile.close();
       }
 
-      std::cout << (f == f2 ? "equal" : "not equal") << std::endl;
+      std::cout << "Both objects are " << (f == f2 ? "equal." : "not equal.") << "\n\n";
     }
   }
 
@@ -146,6 +166,10 @@ namespace recipe_7_02 {
 
   void test3()
   {
+    std::cout << "To serialize/deserialize POD types that do not contain pointers, use "
+                 "ofstream::write() and ifstream::read():\n";
+    std::cout << "See previous recipe.\n";
+
     std::vector<foopod> output{ { true, '1', { 1, 2 } },
                                 { true, '2', { 3, 4 } },
                                 { false, '3', { 4, 5 } } };
@@ -178,12 +202,15 @@ namespace recipe_7_02 {
         ifile.close();
       }
 
-      std::cout << (output == input ? "equal" : "not equal") << std::endl;
+      std::cout << "Both objects are " << (output == input ? "equal." : "not equal.") << "\n\n";
     }
   }
 
   void execute()
   {
+    std::cout << "\nRecipe 7.02: Reading and writing objects from/to binary files."
+              << "\n--------------------------------------------------------------\n";
+
     test1();
     test2();
     test3();

@@ -4,25 +4,22 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 namespace recipe_7_05 {
   using namespace std::string_literals;
 
   void test_money()
   {
-    std::vector<std::string> locale_names{ ""s,
-#ifdef _WIN32
-                                           "English_US.1252"s,
-                                           "English_UK.1252"s,
-                                           "Japanese_Japan.932"s,
-                                           "French_France.1252"s,
-                                           "German_Germany.1252"s,
-                                           "Romanian_Romania.1250"s
-#else
-                                           "en_US.utf8"s, "en_GB.utf8"s, "ja_JP.utf8"s,
-                                           "fr_FR.utf8"s, "de_DE.utf8"s, "ro_RO.utf8"s
-#endif
-    };
+    std::cout << "Test money:\n";
+
+    // To install locales under Ubuntu:
+    // sudo apt-get install language-pack-ja
+    // sudo apt-get install language-pack-fr
+    // sudo apt-get install language-pack-ro
+    std::vector<std::string> locale_names{ ""s,           "en_US.utf8"s, "en_GB.utf8"s,
+                                           "ja_JP.utf8"s, "fr_FR.utf8"s, "de_DE.utf8"s,
+                                           "ro_RO.utf8"s };
 
     long double mon = 12345.67;
 
@@ -60,11 +57,9 @@ namespace recipe_7_05 {
 
   void write_money()
   {
-#ifdef _WIN32
-    auto loc_uk = std::locale{ "English_UK.1252" };
-#else
+    std::cout << "\nWrite money:\n";
+
     auto loc_uk = std::locale{ "en_GB.utf8" };
-#endif
 
     long double mon = 12345.67;
 
@@ -85,15 +80,13 @@ namespace recipe_7_05 {
 
   void read_money()
   {
+    std::cout << "\nRead money:\n";
     {
       auto text = "$123.45 123.45 USD"s;
       std::istringstream stext(text);
 
-#ifdef _WIN32
-      auto loc_us = std::locale{ "English_US.1252" };
-#else
       auto loc_us = std::locale{ "en_US.utf8" };
-#endif
+
       stext.imbue(loc_us);
 
       long double v1;
@@ -116,8 +109,10 @@ namespace recipe_7_05 {
 
   void execute()
   {
-    test_money();
+    std::cout << "\nRecipe 7.05: Using monetary I/O manipulators."
+              << "\n---------------------------------------------\n";
 
+    test_money();
     write_money();
     read_money();
   }

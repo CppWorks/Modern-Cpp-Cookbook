@@ -1,7 +1,9 @@
 #pragma once
 
+// https://stackoverflow.com/questions/33149878/experimentalfilesystem-linker-error/33159746#33159746
+
 #include <cassert>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 
@@ -10,18 +12,10 @@ namespace fs = std::experimental::filesystem;
 namespace recipe_7_07 {
   void execute()
   {
-// append
-#ifdef _WIN32
-    {
-      auto path = fs::path{ "C:\\Users\\Marius\\Documents" };
+    std::cout << "\nRecipe 7.07: Working with filesystem paths."
+              << "\n-------------------------------------------\n\n";
 
-      path /= "Book";
-      path = path / "Modern" / "Cpp";
-      path.append("Programming");
-
-      std::cout << path << std::endl;
-    }
-#else
+    // append
     {
       auto path = fs::path{ "/home/marius/docs" };
       path /= "book";
@@ -30,19 +24,8 @@ namespace recipe_7_07 {
 
       std::cout << path << std::endl;
     }
-#endif
 
-      // concat
-#ifdef _WIN32
-    {
-      auto path = fs::path{ "C:\\Users\\Marius\\Documents" };
-
-      path += "\\Book";
-      path.concat("\\Modern");
-
-      std::cout << path << std::endl;
-    }
-#else
+    // concat
     {
       auto path = fs::path{ "/home/marius/docs" };
 
@@ -51,15 +34,10 @@ namespace recipe_7_07 {
 
       std::cout << path << std::endl;
     }
-#endif
 
     // decomposition
     {
-#ifdef _WIN32
-      auto path = fs::path{ "C:\\Users\\Marius\\Documents" };
-#else
       auto path = fs::path{ "/home/marius/docs" };
-#endif
 
       path /= "sample.file.txt";
 
@@ -75,11 +53,7 @@ namespace recipe_7_07 {
 
     // query
     {
-#ifdef _WIN32
-      auto path = fs::path{ "C:\\Users\\Marius\\Documents" };
-#else
       auto path = fs::path{ "/home/marius/docs" };
-#endif
 
       path /= "sample.file.txt";
 
@@ -96,11 +70,7 @@ namespace recipe_7_07 {
     // absolute / relative
     {
       auto path1 = fs::current_path();
-#if _WIN32
-      auto path2 = fs::path{ "marius\\temp" };
-#else
       auto path2 = fs::path{ "marius/temp" };
-#endif
 
       std::cout << "absolute: " << path1.is_absolute() << std::endl
                 << "absolute: " << path2.is_absolute() << std::endl;
@@ -108,53 +78,30 @@ namespace recipe_7_07 {
 
     // modifiers
     {
-#ifdef _WIN32
-      auto path = fs::path{ "C:\\Users\\Marius\\Documents" };
-#else
       auto path = fs::path{ "/home/marius/docs" };
-#endif
 
       path /= "sample.file.txt";
 
       path.replace_filename("output");
       path.replace_extension(".log");
 
-#ifdef _WIN32
-      assert(fs::path{ "C:\\Users\\Marius\\Documents\\output.log" } == path);
-#else
       assert(fs::path{ "/home/marius/docs/output.log" } == path);
-#endif
 
       path.remove_filename();
-#ifdef _WIN32
-      assert(fs::path{ "C:\\Users\\Marius\\Documents" } == path);
-#else
       assert(fs::path{ "/home/marius/docs" } == path);
-#endif
     }
 
     // preferred
     {
-#ifdef _WIN32
-      auto path = fs::path{ "Users/Marius/Documents" };
+      auto path = fs::path{ "/home/marius/docs" };
       path.make_preferred();
-
-      assert(path == fs::path{ "Users\\Marius\\Documents" });
-#else
-      auto path = fs::path{ "\\home\\marius\\docs" };
-      path.make_preferred();
-
+      // std::cout << path << std::endl;
       assert(path == fs::path{ "/home/marius/docs" });
-#endif
     }
 
     // iterating
     {
-#ifdef _WIN32
-      auto path = fs::path{ "C:\\Users\\Marius\\Documents" };
-#else
       auto path = fs::path{ "/home/marius/docs" };
-#endif
 
       path /= "sample.file.txt";
 

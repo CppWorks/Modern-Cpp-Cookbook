@@ -27,6 +27,13 @@ namespace recipe_6_11 {
 
   // In a type template parameter, to select between integer and real uniform
   // distribution:
+  // To help simplify the use of std::conditional, C++14 provides an alias template called std::conditional_t and that is defined as follows:
+
+  /*
+  template<bool Test, class T1, class T2>
+  using conditional_t = typename conditional<Test,T1,T2>::type;
+  */
+
   template <typename T,
             typename D = std::conditional_t<std::is_integral<T>::value,
                                             std::uniform_int_distribution<T>,

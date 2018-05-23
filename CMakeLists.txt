@@ -41,6 +41,11 @@ add_executable(Chapter06 ${CMAKE_SOURCE_DIR}/Chapter06/main.cpp)
 target_compile_features(Chapter06 PUBLIC cxx_std_17)
 
 # Chapter 7 - Working with Files and Streams
+
+add_executable(Chapter07 ${CMAKE_SOURCE_DIR}/Chapter07/main.cpp)
+target_compile_features(Chapter07 PUBLIC cxx_std_17)
+target_link_libraries(Chapter07 PUBLIC stdc++fs)
+
 # Chapter 8 - Leveraging Threading and Concurrency
 # Chapter 9 - Robustness and Performance
 # Chapter 10 - Implementing Patterns and Idioms

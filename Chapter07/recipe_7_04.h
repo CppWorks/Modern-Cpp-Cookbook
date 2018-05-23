@@ -1,8 +1,11 @@
 #pragma once
 
+// The I/O manipulators are available in the std namespace in headers <ios>, <istream>,
+// <ostream>, and <iomanip>.
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace recipe_7_04 {
   using namespace std::string_literals;
@@ -19,6 +22,8 @@ namespace recipe_7_04 {
 
   void print1()
   {
+    std::cout << "Print largest companies by revenue:\n\n";
+
     // https://en.wikipedia.org/wiki/List_of_largest_companies_by_revenue
     std::vector<Company> companies{
       { "Walmart"s, "Retail"s, 482, false, 0.71, 2300000, "US"s },
@@ -103,6 +108,8 @@ namespace recipe_7_04 {
 
   void print2()
   {
+    std::cout << "\nPrint book toc:\n\n";
+
     auto book = Book{ "THE FELLOWSHIP OF THE RING"s,
                       {
                         {
@@ -144,9 +151,13 @@ namespace recipe_7_04 {
 
   void execute()
   {
-    print1();
+    std::cout
+      << "\nRecipe 7.04: Using I/O manipulators to control the output of a stream."
+      << "\n----------------------------------------------------------------------\n";
 
+    print1();
     print2();
+    std::cout << std::endl;
 
     {
       std::cout << std::boolalpha << true << std::endl;    // true
