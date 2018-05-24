@@ -1,20 +1,34 @@
 #pragma once
 
+// The standard library provides support for the complementary, lower-level atomic
+// operations on data, that is, indivisible operations that can be executed concurrently
+// from different threads on shared data without the risk of producing race conditions and
+// without the use of locks. The support it provides includes atomic types, atomic
+// operations, and memory synchronization ordering.
+
+//  The behavior of the objects of atomic types is well defined when one thread writes to
+//  the object and the other reads data, without using locks to protect access.
+
 #include <atomic>
 #include <cassert>
 #include <iostream>
 #include <numeric>
 #include <thread>
+#include <vector>
+#include <random>
+#include <algorithm>
 
 namespace recipe_8_08 {
   void test_atomic()
   {
+    // Use the std::atomic class template...
     std::atomic<int> counter{ 0 };
 
     std::vector<std::thread> threads;
     for (int i = 0; i < 10; ++i) {
       threads.emplace_back([&counter]() {
         for (int i = 0; i < 10; ++i)
+          // ... to change data atomically:
           ++counter;
       });
     }
@@ -27,6 +41,7 @@ namespace recipe_8_08 {
 
   void test_atomic_flag()
   {
+    // Use the std::atomic_flag class for an atomic Boolean type:
     std::atomic_flag lock = ATOMIC_FLAG_INIT;
     int counter = 0;
 
@@ -71,6 +86,10 @@ namespace recipe_8_08 {
       threads.emplace_back(
         [&sum, &numbers](size_t const start, size_t const end) {
           for (size_t i = start; i < end; ++i) {
+            // Use the atomic type's member functions - load(), store(), ... - to change
+            // atomic data: (The memory order specifies how non-atomic memory accesses are
+            // to be ordered around atomic operations. By default, the memory order of all
+            // atomic types and operations is sequential consistency.)
             std::atomic_fetch_add_explicit(&sum, numbers[i], std::memory_order_acquire);
           }
         },
@@ -93,7 +112,16 @@ namespace recipe_8_08 {
   public:
     T increment()
     {
+      // Use the atomic type's member functions - load(), store(), ... - to change atomic
+      // data: (fetch_add() atomically adds a non-atomic argument to the atomic value and
+      // return the value stored previously.)
       return counter.fetch_add(1);
+
+      // This is not an atomic operation:
+      // a = a + 42;
+
+      // This is an atomic operation (trough operator overloading):
+      // a += 42;
     }
 
     T decrement()
@@ -127,6 +155,9 @@ namespace recipe_8_08 {
 
   void execute()
   {
+    std::cout << "\nRecipe 8.08: Using atomic types."
+              << "\n--------------------------------\n";
+
     test_atomic();
     test_atomic_flag();
     test_fetch_arithmetic();

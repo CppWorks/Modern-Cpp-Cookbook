@@ -3,9 +3,11 @@
 #include <algorithm>
 #include <cassert>
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 #include <numeric>
 #include <thread>
+#include <vector>
 
 namespace recipe_8_09 {
   template <typename Time = std::chrono::microseconds,
@@ -16,7 +18,7 @@ namespace recipe_8_09 {
     {
       auto start = Clock::now();
 
-      std::invoke(std::forward<F>(f), std::forward<Args>(args)...);
+      std::__invoke(std::forward<F>(f), std::forward<Args>(args)...);
 
       auto end = Clock::now();
 
@@ -143,6 +145,9 @@ namespace recipe_8_09 {
 
   void execute()
   {
+    std::cout << "\nRecipe 8.09: Implementing parallel map and fold with threads."
+              << "\n-------------------------------------------------------------\n";
+
     test_mapreduce_threads();
   }
 }

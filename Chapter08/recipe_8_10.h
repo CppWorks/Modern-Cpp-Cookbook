@@ -1,11 +1,17 @@
 #pragma once
 
+// Tasks are a higher-level alternative to threads for performing concurrent computations.
+// std::async() enables us to execute functions asynchronously, without the need to handle
+// lower-level threading details.
+
 #include <algorithm>
 #include <cassert>
 #include <chrono>
 #include <future>
 #include <iostream>
 #include <numeric>
+#include <vector>
+#include <iomanip>
 
 namespace recipe_8_10 {
   template <typename Time = std::chrono::microseconds,
@@ -16,7 +22,7 @@ namespace recipe_8_10 {
     {
       auto start = Clock::now();
 
-      std::invoke(std::forward<F>(f), std::forward<Args>(args)...);
+      std::__invoke(std::forward<F>(f), std::forward<Args>(args)...);
 
       auto end = Clock::now();
 
@@ -29,6 +35,7 @@ namespace recipe_8_10 {
     return std::thread::hardware_concurrency();
   }
 
+  // Using async launching policy
   namespace version1 {
     template <typename Iter, typename F>
     void parallel_map(Iter begin, Iter end, F f)
@@ -42,6 +49,7 @@ namespace recipe_8_10 {
         auto part = size / no_of_tasks;
         auto last = begin;
 
+        // Use futures to implement tasks.
         std::vector<std::future<void>> tasks;
         for (unsigned i = 0; i < no_of_tasks; ++i) {
           if (i == no_of_tasks - 1)
@@ -49,6 +57,8 @@ namespace recipe_8_10 {
           else
             std::advance(last, part);
 
+          // Start the asynchronous functions and run a sequential version of the mapping
+          // on each one of them.
           tasks.emplace_back(std::async(std::launch::async, [=, &f] {
             std::transform(begin, last, begin, std::forward<F>(f));
           }));
@@ -97,6 +107,7 @@ namespace recipe_8_10 {
     }
   }
 
+  // Using deferred launching policy
   namespace version2 {
     template <typename Iter, typename F>
     void parallel_map(Iter begin, Iter end, F f)
@@ -109,6 +120,7 @@ namespace recipe_8_10 {
         auto middle = begin;
         std::advance(middle, size / 2);
 
+        // deferred launching policy
         auto result = std::async(std::launch::deferred, parallel_map<Iter, F>, begin,
                                  middle, std::forward<F>(f));
         parallel_map(middle, end, std::forward<F>(f));
@@ -127,6 +139,7 @@ namespace recipe_8_10 {
         auto middle = begin;
         std::advance(middle, size / 2);
 
+        // deferred launching policy
         auto result1 = std::async(std::launch::async, parallel_reduce<Iter, R, F>, begin,
                                   middle, R{}, std::forward<F>(op));
 
@@ -138,7 +151,8 @@ namespace recipe_8_10 {
 
   void test_mapreduce_tasks()
   {
-    std::vector<int> sizes{ 10000, 100000, 500000, 1000000, 2000000, 5000000, 10000000 };
+    std::vector<int> sizes{ 10000,   100000,   500000,   1000000, 2000000,
+                            5000000, 10000000, 25000000, 50000000 };
 
     std::cout << std::right << std::setw(8) << std::setfill(' ') << "size" << std::right
               << std::setw(8) << "s map" << std::right << std::setw(8) << "p1 map"
@@ -201,6 +215,9 @@ namespace recipe_8_10 {
 
   void execute()
   {
+    std::cout << "\nRecipe 8.10: Implementing parallel map and fold with tasks."
+              << "\n-----------------------------------------------------------\n";
+
     test_mapreduce_tasks();
   }
 }

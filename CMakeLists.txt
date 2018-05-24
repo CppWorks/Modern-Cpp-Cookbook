@@ -5,7 +5,8 @@ project(Modern-Cpp-Cookbook VERSION 0.0.1)
 # list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 # find_package(Boost REQUIRED serialization system)
-# find_package(Threads)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 # Chapter 1 - Learning Modern Core Language Features
 add_executable(Chapter01
@@ -43,6 +44,10 @@ add_custom_command(
   COMMAND cp ${CMAKE_SOURCE_DIR}/Chapter07/sample.plays ${CMAKE_CURRENT_BINARY_DIR})
 
 # Chapter 8 - Leveraging Threading and Concurrency
+add_executable(Chapter08 ${CMAKE_SOURCE_DIR}/Chapter08/main.cpp)
+target_compile_features(Chapter08 PUBLIC cxx_std_17)
+target_link_libraries(Chapter08 PUBLIC Threads::Threads)
+
 # Chapter 9 - Robustness and Performance
 # Chapter 10 - Implementing Patterns and Idioms
 # Chapter 11 - Exploring Testing Frameworks
