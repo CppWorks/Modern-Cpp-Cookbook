@@ -121,7 +121,7 @@ namespace recipe_3_09 {
     }
 
     {
-      auto a = apply(add, std::make_tuple(1, 2));
+      auto a = recipe_3_09::apply(add, std::make_tuple(1, 2));
       std::cout << a << std::endl;
     }
   }

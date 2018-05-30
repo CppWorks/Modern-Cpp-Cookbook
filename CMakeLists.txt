@@ -20,8 +20,8 @@ add_executable(Chapter02 ${CMAKE_SOURCE_DIR}/Chapter02/main.cpp)
 target_compile_features(Chapter02 PUBLIC cxx_std_17)
 
 # Chapter 3 - Exploring Functions
-# add_executable(Chapter03 ${CMAKE_SOURCE_DIR}/Chapter03/main.cpp)
-# target_compile_features(Chapter03 PUBLIC cxx_std_17)
+add_executable(Chapter03 ${CMAKE_SOURCE_DIR}/Chapter03/main.cpp)
+target_compile_features(Chapter03 PUBLIC cxx_std_17)
 
 # Chapter 4 - Preprocessor and Compilation
 add_executable(Chapter04 ${CMAKE_SOURCE_DIR}/Chapter04/main.cpp)
@@ -49,6 +49,9 @@ target_compile_features(Chapter08 PUBLIC cxx_std_17)
 target_link_libraries(Chapter08 PUBLIC Threads::Threads)
 
 # Chapter 9 - Robustness and Performance
+add_executable(Chapter09 ${CMAKE_SOURCE_DIR}/Chapter09/main.cpp)
+target_compile_features(Chapter09 PUBLIC cxx_std_17)
+
 # Chapter 10 - Implementing Patterns and Idioms
 # Chapter 11 - Exploring Testing Frameworks
 
