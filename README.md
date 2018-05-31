@@ -133,5 +133,3 @@
 ### 11.12 Writing and invoking tests with Catch
 ### 11.13 Asserting with Catch
 ### 11.14 Controlling output with Catch
-
-
