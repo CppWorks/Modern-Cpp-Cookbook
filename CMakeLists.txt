@@ -53,6 +53,9 @@ add_executable(Chapter09 ${CMAKE_SOURCE_DIR}/Chapter09/main.cpp)
 target_compile_features(Chapter09 PUBLIC cxx_std_17)
 
 # Chapter 10 - Implementing Patterns and Idioms
+add_executable(Chapter10 ${CMAKE_SOURCE_DIR}/Chapter10/main.cpp ${CMAKE_SOURCE_DIR}/Chapter10/control.cpp)
+target_compile_features(Chapter10 PUBLIC cxx_std_17)
+
 # Chapter 11 - Exploring Testing Frameworks
 
 # Create compile database
