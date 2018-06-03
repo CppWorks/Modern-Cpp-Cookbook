@@ -1,5 +1,32 @@
 #pragma once
 
+// Virtual functions provide customization points for a class, by allowing derived classes
+// to modify implementations from a base class. When a derived class object is handled
+// through a pointer or a reference to a base class, calls to overridden virtual functions
+// end up invoking the overridden implementation from the derived class.
+
+// The non-virtual idiom (NVI) helps enforcing the promised contract of an interface.
+
+// Implementing this idiom requires following several simple design guidelines:
+
+// 1. Make (public) interfaces non-virtual.
+
+// 2. Make virtual functions private.
+
+// 3. Make virtual functions protected only if the base implementation has to be called
+// from a derived class.
+
+// 4. Make the base class destructor either public and virtual or protected and
+// nonvirtual.
+
+// A special mention of the destructor of a class is required for this idiom. It is often
+// stressed that base class destructors should be virtual so that objects can be deleted
+// polymorphically (through a pointer or references to a base class). Destructing objects
+// polymorphically when the destructor is not virtual incurs undefined behavior. However,
+// not all base classes are intended to be deleted polymorphically. For those particular
+// cases, the base class destructor should not be virtual. However, it should also not be
+// public, but protected.
+
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -7,9 +34,12 @@
 namespace recipe_10_04 {
   class control {
   private:
+    // 2. Make virtual functions private:
     virtual void paint() = 0;
 
   protected:
+    // 3. Make virtual functions protected only if the base implementation has to be called
+    // from a derived class:
     virtual void initialize_impl()
     {
       std::cout << "initializing control..." << std::endl;
@@ -21,6 +51,11 @@ namespace recipe_10_04 {
     }
 
   public:
+    // The only functionality defined by the control class is drawing the controls. The
+    // draw() method is nonvirtual, but it calls two virtual methods, erase_background()
+    // and paint(), to implement the two phases of drawing the control.
+
+    // 1. Make (public) interfaces non-virtual:
     void draw()
     {
       erase_background();
@@ -32,6 +67,11 @@ namespace recipe_10_04 {
       initialize_impl();
     }
 
+    // The destructor of the control class is public and virtual because objects are
+    // expected to be deleted polymorphically.
+
+    // 4. Make the base class destructor either public and virtual or protected and
+    // nonvirtual:
     virtual ~control()
     {
       std::cout << "destroying control..." << std::endl;
@@ -88,6 +128,11 @@ namespace recipe_10_04 {
 
   void execute()
   {
+    std::cout << "\nRecipe 10.04: Separating interfaces from implementations with the "
+                 "non-virtual interface idiom."
+              << "\n---------------------------------------------------------------------"
+                 "-------------------------\n";
+
     {
       std::vector<std::shared_ptr<control>> controls;
 
